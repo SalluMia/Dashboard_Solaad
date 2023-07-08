@@ -6,7 +6,7 @@ import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
 import Loader from './common/Loader';
 import Events from './pages/Events';
-import Holidays from './components/Holidays';
+
 import EventsForm from './pages/Form/EventsForm';
 import Services from './components/Services';
 import ServicesForm from './pages/Form/ServicesForm';
