@@ -12,6 +12,12 @@ import Services from './components/Services';
 import ServicesForm from './pages/Form/ServicesForm';
 import Strategies from './components/Strategies';
 import StrategiesForm from './pages/Form/StrategiesForm';
+import Technologies from './components/Technologies';
+import TechnologiesForm from './pages/Form/TechnologiesForm';
+import Testimonials from './components/Testimonials';
+import TestimonialsForm from './pages/Form/TestimonialsForm';
+import SocialLinks from './components/SocialLinks';
+import SocialLinksForm from './pages/Form/SocialLinksForm';
 
 const Calendar = lazy(() => import('./pages/Calendar'));
 const Chart = lazy(() => import('./pages/Chart'));
@@ -39,8 +45,7 @@ function App() {
         <Route path="/auth/signin" element={<SignIn />} />
         <Route path="/auth/signup" element={<SignUp />} />
         <Route element={<DefaultLayout />}>
-         
-        <Route
+          <Route
             path="/Holidays&Events"
             element={
               <Suspense fallback={<Loader />}>
@@ -49,7 +54,11 @@ function App() {
             }
           />
 
-<Route
+          {/* routes for technologies */}
+
+          <Route path="/technologies" element={<Technologies />} />
+
+          <Route
             path="/events"
             element={
               <Suspense fallback={<Loader />}>
@@ -58,7 +67,53 @@ function App() {
             }
           />
 
-<Route
+          <Route
+            path="/technologyform"
+            element={
+              <Suspense fallback={<Loader />}>
+                <TechnologiesForm />
+              </Suspense>
+            }
+          />
+
+          {/* routes for testimonials */}
+
+          <Route
+            path="/testimonials"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Testimonials />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/testimonialsform"
+            element={
+              <Suspense fallback={<Loader />}>
+                <TestimonialsForm />
+              </Suspense>
+            }
+          />
+
+          {/* routes for social links */}
+          <Route
+            path="/sociallinks"
+            element={
+              <Suspense fallback={<Loader />}>
+                <SocialLinks />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/sociallinksform"
+            element={
+              <Suspense fallback={<Loader />}>
+                <SocialLinksForm />
+              </Suspense>
+            }
+          />
+
+          <Route
             path="/Services"
             element={
               <Suspense fallback={<Loader />}>
@@ -67,8 +122,7 @@ function App() {
             }
           />
 
-
-<Route
+          <Route
             path="/servicesform"
             element={
               <Suspense fallback={<Loader />}>
@@ -77,8 +131,7 @@ function App() {
             }
           />
 
-
-<Route
+          <Route
             path="/strategies"
             element={
               <Suspense fallback={<Loader />}>
@@ -87,8 +140,7 @@ function App() {
             }
           />
 
-
-<Route
+          <Route
             path="/strategiesform"
             element={
               <Suspense fallback={<Loader />}>
@@ -96,16 +148,6 @@ function App() {
               </Suspense>
             }
           />
-
-
-
-
-
-
-
-
-
-
 
           <Route index element={<ECommerce />} />
           <Route
