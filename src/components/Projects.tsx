@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus,faTrashAlt, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-export default function Strategies() {
+
+export default function Projects() {
   return (
-    <div> 
-           <div className="flex justify-end mb-5">
-        <Link to="/strategiesform">
+    <div>
+       <div className="flex justify-end mb-5">
+        <Link to="/projectsform">
           <button className="add-button  px-3 h-10 rounded-full bg-blue-500 text-white hover:scale-110 transform transition-transform duration-300"  style={{background:'#023e8a'}}>
-            <b>Add your Strategies</b> <FontAwesomeIcon icon={faPlus} style={{ fontSize: '12px' }} />
+            <b>Add your Projects</b> <FontAwesomeIcon icon={faPlus} style={{ fontSize: '12px' }} />
           </button>
         </Link>
       </div>
@@ -17,17 +18,17 @@ export default function Strategies() {
           <table className="w-full table-auto">
             <thead>
               <tr className="bg-gray-2 text-left dark:bg-meta-4">
-                <th className="min-w-[220px] py-4 px-4 font-medium text-sm text-black dark:text-white xl:pl-11">
-                  <b>Strategic Execution Title</b>
+                <th className="min-w-[220px] py-4 px-4 font-medium  text-sm   text-black dark:text-white xl:pl-11">
+                  <b>Projects Title</b>
                 </th>
-                <th className="min-w-[150px] py-4 px-4 font-medium text-sm text-black dark:text-white">
-                 <b> Strategic Description</b>
+                <th className="min-w-[150px] py-4 px-4 font-medium  text-sm  text-black dark:text-white">
+                  <b>Project Description</b>
                 </th>
-                <th className="min-w-[120px] py-4 px-4 font-medium text-sm text-black dark:text-white">
-                 <b> Image</b>
+                <th className="min-w-[120px] py-4 px-4 font-medium  text-sm  text-black dark:text-white">
+                  <b>Image</b>
                 </th>
               
-                <th className="py-4 px-4 font-medium text-sm text-black dark:text-white">
+                <th className="py-4 px-4 font-medium  text-sm  text-black dark:text-white">
                   <b>Actions</b>
                 </th>
               </tr>
@@ -35,7 +36,7 @@ export default function Strategies() {
             <tbody>
               <tr>
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                  <h5 className="font-medium text-sm text-black dark:text-white">
+                  <h5 className="font-medium  text-sm  text-black dark:text-white">
                      Web Design UI/UX
                   </h5>
                 </td>
@@ -45,7 +46,7 @@ export default function Strategies() {
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="inline-flex py-1 px-3 text-sm font-medium text-sm text-success">
+                  <p className="inline-flex py-1 px-3 text-sm font-medium  text-sm  text-success">
                     <img
                       className="my-5 h-20 w-40 object-cover"
                       src="https://images.unsplash.com/photo-1648679936825-7dc9b7355c7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
@@ -87,7 +88,7 @@ export default function Strategies() {
               </tr>
               <tr>
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                  <h5 className="font-medium text-sm text-black dark:text-white">
+                  <h5 className="font-medium  text-sm  text-black dark:text-white">
                     Migration to cloud
                   </h5>
                 </td>
@@ -97,7 +98,7 @@ export default function Strategies() {
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="inline-flex py-1 px-3 text-sm font-medium text-sm text-success">
+                  <p className="inline-flex py-1 px-3 text-sm font-medium  text-sm  text-success">
                     <img
                       className="my-5 h-20 w-40 object-cover"
                       src="https://images.unsplash.com/photo-1648073380883-73fa85616559?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
@@ -134,7 +135,7 @@ export default function Strategies() {
               </tr>
               <tr>
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                  <h5 className="font-medium text-sm text-black dark:text-white">
+                  <h5 className="font-medium  text-sm  text-black dark:text-white">
                     <b>Redesign</b>
                   </h5>
                 </td>
@@ -144,7 +145,7 @@ export default function Strategies() {
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="inline-flex py-1 px-3 text-sm font-medium text-sm text-success">
+                  <p className="inline-flex py-1 px-3 text-sm font-medium  text-sm  text-success">
                     <img
                       className="my-5 h-20 w-40 object-cover"
                       src="https://images.unsplash.com/photo-1648679936825-7dc9b7355c7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
@@ -180,7 +181,7 @@ export default function Strategies() {
               </tr>
               <tr>
                 <td className="py-5 px-4 pl-9 xl:pl-11">
-                  <h5 className="font-medium text-sm text-black dark:text-white">
+                  <h5 className="font-medium  text-sm  text-black dark:text-white">
                     Banners Designes
                   </h5>
                 </td>
@@ -190,7 +191,7 @@ export default function Strategies() {
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="inline-flex py-1 px-3 text-sm font-medium text-sm text-success">
+                  <p className="inline-flex py-1 px-3 text-sm font-medium  text-sm  text-success">
                     <img
                       className="my-5 h-20 w-40 object-cover"
                       src="https://images.unsplash.com/photo-1648679936837-bbac8d879f14?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"

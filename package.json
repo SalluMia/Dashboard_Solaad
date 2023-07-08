@@ -24,7 +24,11 @@
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
     "react-dom": "^18.2.0",
+<<<<<<< HEAD
     "react-drag-drop-files": "^2.3.10",
+=======
+    "react-icons": "^4.10.1",
+>>>>>>> 921362f4aebee375df30449eb3d9814140bf663c
     "react-router-dom": "^6.8.1",
     "sort-by": "^0.0.2"
   },

@@ -17,25 +17,25 @@ function Services() {
           <table className="w-full table-auto">
             <thead>
               <tr className="bg-gray-2 text-left dark:bg-meta-4">
-                <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
-                  Services Title
+                <th className="min-w-[220px] py-4 px-4 font-medium text-sm text-black dark:text-white xl:pl-11">
+                 <b> Services Title</b>
                 </th>
-                <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                  Services Description
+                <th className="min-w-[150px] py-4 px-4 font-medium text-sm text-black dark:text-white">
+                  <b>Services Description</b>
                 </th>
-                <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
-                  Image
+                <th className="min-w-[120px] py-4 px-4 font-medium text-sm text-black dark:text-white">
+                  <b>Image</b>
                 </th>
               
-                <th className="py-4 px-4 font-medium text-black dark:text-white">
-                  Actions
+                <th className="py-4 px-4 font-medium text-sm text-black dark:text-white">
+                  <b>Actions</b>
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                  <h5 className="font-medium text-black dark:text-white">
+                  <h5 className="font-medium text-sm text-black dark:text-white">
                     Web Development & Technologies
                   </h5>
                 </td>
@@ -45,7 +45,7 @@ function Services() {
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="inline-flex py-1 px-3 text-sm font-medium text-success">
+                  <p className="inline-flex py-1 px-3 text-sm font-medium text-sm text-success">
                     <img
                       className="my-5 h-20 w-40 object-cover"
                       src="https://images.unsplash.com/photo-1648679936825-7dc9b7355c7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
@@ -87,7 +87,7 @@ function Services() {
               </tr>
               <tr>
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                  <h5 className="font-medium text-black dark:text-white">
+                  <h5 className="font-medium text-sm text-black dark:text-white">
                     Logo Design
                   </h5>
                 </td>
@@ -97,7 +97,7 @@ function Services() {
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="inline-flex py-1 px-3 text-sm font-medium text-success">
+                  <p className="inline-flex py-1 px-3 text-sm font-medium text-sm text-success">
                     <img
                       className="my-5 h-20 w-40 object-cover"
                       src="https://images.unsplash.com/photo-1648073380883-73fa85616559?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
@@ -134,7 +134,7 @@ function Services() {
               </tr>
               <tr>
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                  <h5 className="font-medium text-black dark:text-white">
+                  <h5 className="font-medium text-sm text-black dark:text-white">
                     <b>Custom software</b>
                   </h5>
                 </td>
@@ -144,7 +144,7 @@ function Services() {
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="inline-flex py-1 px-3 text-sm font-medium text-success">
+                  <p className="inline-flex py-1 px-3 text-sm font-medium text-sm text-success">
                     <img
                       className="my-5 h-20 w-40 object-cover"
                       src="https://images.unsplash.com/photo-1648679936825-7dc9b7355c7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
@@ -180,7 +180,7 @@ function Services() {
               </tr>
               <tr>
                 <td className="py-5 px-4 pl-9 xl:pl-11">
-                  <h5 className="font-medium text-black dark:text-white">
+                  <h5 className="font-medium text-sm text-black dark:text-white">
                     Christmis
                   </h5>
                 </td>
@@ -190,7 +190,7 @@ function Services() {
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="inline-flex py-1 px-3 text-sm font-medium text-success">
+                  <p className="inline-flex py-1 px-3 text-sm font-medium text-sm text-success">
                     <img
                       className="my-5 h-20 w-40 object-cover"
                       src="https://images.unsplash.com/photo-1648679936837-bbac8d879f14?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"

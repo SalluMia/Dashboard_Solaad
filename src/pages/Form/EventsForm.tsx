@@ -7,23 +7,23 @@ export default function EventsForm() {
             <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
               <div className="flex flex-col gap-5.5 p-6.5">
                 <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    Event Title
+                  <label className="mb-3 block text-sm text-black dark:text-white">
+                    <b>Event Title</b>
                   </label>
                   <input
                     type="text"
-                    placeholder="enter event"
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    placeholder="place event's title here"
+                    className="w-full text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-small outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    Content
+                  <label className="mb-3 block text-sm text-black dark:text-white">
+                    <b>Content</b>
                   </label>
                   <textarea
-                    placeholder="content"
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    placeholder="place brief detail of event's here"
+                    className="w-full text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-small outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                   />
                 </div>
 
@@ -77,25 +77,7 @@ export default function EventsForm() {
                   </div>
                 </div>
 
-                <div className="relative">
-                  <label className="mb-3 block text-black dark:text-white">
-                    Starting Date
-                  </label>
-                  <input
-                    type="date"
-                    className="custom-input-date custom-input-date-1 w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                  />
-                </div>
-
-                <div className="relative">
-                  <label className="mb-3 block text-black dark:text-white">
-                    Ending Date Date
-                  </label>
-                  <input
-                    type="date"
-                    className="custom-input-date custom-input-date-1 w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                  />
-                </div>
+                
 
                 <div className="relative">
                     <button
