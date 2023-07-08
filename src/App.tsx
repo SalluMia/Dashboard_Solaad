@@ -12,6 +12,8 @@ import Services from './components/Services';
 import ServicesForm from './pages/Form/ServicesForm';
 import Strategies from './components/Strategies';
 import StrategiesForm from './pages/Form/StrategiesForm';
+import Projects from './components/Projects';
+import PortfolioForm from './pages/Form/PortfolioForm';
 
 const Calendar = lazy(() => import('./pages/Calendar'));
 const Chart = lazy(() => import('./pages/Chart'));
@@ -39,8 +41,7 @@ function App() {
         <Route path="/auth/signin" element={<SignIn />} />
         <Route path="/auth/signup" element={<SignUp />} />
         <Route element={<DefaultLayout />}>
-         
-        <Route
+          <Route
             path="/Holidays&Events"
             element={
               <Suspense fallback={<Loader />}>
@@ -49,7 +50,7 @@ function App() {
             }
           />
 
-<Route
+          <Route
             path="/events"
             element={
               <Suspense fallback={<Loader />}>
@@ -58,7 +59,7 @@ function App() {
             }
           />
 
-<Route
+          <Route
             path="/Services"
             element={
               <Suspense fallback={<Loader />}>
@@ -67,8 +68,7 @@ function App() {
             }
           />
 
-
-<Route
+          <Route
             path="/servicesform"
             element={
               <Suspense fallback={<Loader />}>
@@ -77,8 +77,7 @@ function App() {
             }
           />
 
-
-<Route
+          <Route
             path="/strategies"
             element={
               <Suspense fallback={<Loader />}>
@@ -87,12 +86,28 @@ function App() {
             }
           />
 
-
-<Route
+          <Route
             path="/strategiesform"
             element={
               <Suspense fallback={<Loader />}>
                 <StrategiesForm />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="/portfolio"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Projects />
+              </Suspense>
+            }
+          />
+           <Route
+            path="/projectsform"
+            element={
+              <Suspense fallback={<Loader />}>
+                <PortfolioForm />
               </Suspense>
             }
           />
@@ -102,11 +117,7 @@ function App() {
 
 
 
-
-
-
-
-
+    {/*========================== Prev Routes =============== */}
           <Route index element={<ECommerce />} />
           <Route
             path="/calendar"
