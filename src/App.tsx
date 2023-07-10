@@ -20,6 +20,8 @@ import SocialLinks from './components/SocialLinks';
 import SocialLinksForm from './pages/Form/SocialLinksForm';
 import AddContact from './components/AddContact';
 import AddContactForm from './pages/Form/AddContactForm';
+import Projects from './components/Projects';
+import PortfolioForm from './pages/Form/PortfolioForm';
 
 const Calendar = lazy(() => import('./pages/Calendar'));
 const Chart = lazy(() => import('./pages/Chart'));
@@ -115,8 +117,8 @@ function App() {
             }
           />
 
-            {/* routes for add contact */}
-            <Route
+          {/* routes for add contact */}
+          <Route
             path="/addcontact"
             element={
               <Suspense fallback={<Loader />}>
@@ -169,6 +171,33 @@ function App() {
             }
           />
 
+          <Route
+            path="/projects"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Projects />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="/projectsform"
+            element={
+              <Suspense fallback={<Loader />}>
+                <PortfolioForm />
+              </Suspense>
+            }
+          />
+
+<Route
+            path="/profile"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Profile />
+              </Suspense>
+            }
+          />
+
           <Route index element={<ECommerce />} />
           <Route
             path="/calendar"
@@ -178,14 +207,7 @@ function App() {
               </Suspense>
             }
           />
-          <Route
-            path="/profile"
-            element={
-              <Suspense fallback={<Loader />}>
-                <Profile />
-              </Suspense>
-            }
-          />
+
           <Route
             path="/forms/form-elements"
             element={
