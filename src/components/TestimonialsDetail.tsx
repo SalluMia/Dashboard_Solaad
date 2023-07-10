@@ -78,7 +78,7 @@ const TestimonialsDetail = () => {
                     >
                       <FontAwesomeIcon icon={faTrashAlt} />
                     </button>
-                    <Link to="/events">
+                    <Link to="/testimonialsform">
                       <button
                         className="hover:text-primary"
                         style={{ color: '#40916c', fontSize: '16px' }}
