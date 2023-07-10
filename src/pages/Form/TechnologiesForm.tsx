@@ -7,13 +7,16 @@ const TechnologiesForm = () => {
   const [title, setTitle] = useState('');
   const [detail, setDetail] = useState('');
 
-  const [file, setFile] = useState(null);
-  const handleChange = (file) => {
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleChange = (file: File) => {
     setFile(file);
+
+    console.log(file);
   };
   const formData = new FormData();
   formData.append('title', title);
-  formData.append('detail', detail);
+
   formData.append('file', file);
 
   return (
@@ -24,7 +27,7 @@ const TechnologiesForm = () => {
             <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
               <div className="flex flex-col gap-5.5 p-6.5">
                 <div>
-                  <label className="mb-3 block text-black dark:text-white">
+                  <label className="mb-3 block font-bold text-black dark:text-white">
                     Technology Title
                   </label>
                   <input
@@ -34,19 +37,6 @@ const TechnologiesForm = () => {
                     name="title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                  />
-                </div>
-
-                <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    Technology Detail
-                  </label>
-                  <textarea
-                    placeholder="Content"
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                    name="detail"
-                    value={detail}
-                    onChange={(e) => setDetail(e.target.value)}
                   />
                 </div>
 

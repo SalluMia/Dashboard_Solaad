@@ -55,7 +55,7 @@ const TechnologiesDetail = () => {
                     >
                       <FontAwesomeIcon icon={faTrashAlt} />
                     </button>
-                    <Link to="/events">
+                    <Link to="/technologyform">
                       <button
                         className="hover:text-primary"
                         style={{ color: '#40916c', fontSize: '16px' }}
@@ -194,7 +194,7 @@ const TechnologiesDetail = () => {
                     >
                       <FontAwesomeIcon icon={faTrashAlt} />
                     </button>
-                    <Link to="/events">
+                    <Link to="/technologyform">
                       <button
                         className="hover:text-primary"
                         style={{ color: '#40916c', fontSize: '16px' }}

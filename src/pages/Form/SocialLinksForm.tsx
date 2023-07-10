@@ -6,16 +6,14 @@ const SocialLinksForm = () => {
   const [platform, setPlatform] = useState('');
   const [url, setURL] = useState('');
 
-  const [file, setFile] = useState(null);
-  const handleChange = (file) => {
+  const [file, setFile] = useState<File | null>(null);
+  const handleChange = (file: File) => {
     setFile(file);
+
     console.log(file);
   };
 
-const handleSubmit=()=>{
-  
-
-}
+  const handleSubmit = () => {};
 
   return (
     <>
@@ -23,7 +21,10 @@ const handleSubmit=()=>{
         <div className="flex flex-col gap-9">
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-              <form onSubmit={handleSubmit} className="flex flex-col gap-5.5 p-6.5">
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-5.5 p-6.5"
+              >
                 <div>
                   <label className="mb-3 block font-bold text-black dark:text-white">
                     Platform
