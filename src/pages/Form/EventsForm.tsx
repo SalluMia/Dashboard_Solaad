@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FileUploader } from 'react-drag-drop-files';
-import '../../index.css'
+import uploader from '../uploader';
 const fileTypes = ['JPG', 'PNG', 'GIF'];
 
 export default function EventsForm() {
@@ -43,8 +43,8 @@ export default function EventsForm() {
               handleChange={handleChange}
               name="file"
               types={fileTypes}
-              className="file-uploader w-full h-100"
-              style={{width:"200px"}}
+              className="file-uploader w-full "
+              style={{width:"200px !important"}}
 
             />
 
