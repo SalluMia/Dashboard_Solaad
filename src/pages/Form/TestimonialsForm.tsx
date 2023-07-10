@@ -8,9 +8,10 @@ function TestimonialsForm() {
   const [detail, setDetail] = useState('');
   const [designation, setDesignation] = useState('');
 
-  const [file, setFile] = useState(null);
-  const handleChange = (file) => {
+  const [file, setFile] = useState<File | null>(null);
+  const handleChange = (file: File) => {
     setFile(file);
+
     console.log(file);
   };
 
