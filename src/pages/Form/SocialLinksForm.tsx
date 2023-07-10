@@ -26,13 +26,13 @@ const SocialLinksForm = () => {
                 className="flex flex-col gap-5.5 p-6.5"
               >
                 <div>
-                  <label className="mb-3 block font-bold text-black dark:text-white">
+                  <label className="mb-3 block text-sm font-bold text-black dark:text-white">
                     Platform
                   </label>
                   <input
                     type="text"
                     placeholder="Platform"
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     name="platform"
                     value={platform}
                     onChange={(e) => {
@@ -42,12 +42,12 @@ const SocialLinksForm = () => {
                 </div>
 
                 <div>
-                  <label className="mb-3 block font-bold text-black dark:text-white">
+                  <label className="mb-3 block text-sm font-bold text-black dark:text-white">
                     URL
                   </label>
                   <textarea
                     placeholder="Enter URL"
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     name="url"
                     value={url}
                     onChange={(e) => {

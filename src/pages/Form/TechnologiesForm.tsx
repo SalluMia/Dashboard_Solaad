@@ -27,13 +27,13 @@ const TechnologiesForm = () => {
             <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
               <div className="flex flex-col gap-5.5 p-6.5">
                 <div>
-                  <label className="mb-3 block font-bold text-black dark:text-white">
+                  <label className="mb-3 block text-sm font-bold text-black dark:text-white">
                     Technology Title
                   </label>
                   <input
                     type="text"
-                    placeholder="Enter event"
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    placeholder="enter technology title"
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm  font-medium  outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     name="title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}

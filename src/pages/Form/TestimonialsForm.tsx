@@ -30,13 +30,13 @@ function TestimonialsForm() {
                 className="flex flex-col gap-5.5 p-6.5"
               >
                 <div>
-                  <label className="mb-3 block font-bold text-black dark:text-white">
+                  <label className="mb-3 block text-sm  font-medium text-black dark:text-white">
                     Testimonials Title
                   </label>
                   <input
                     type="text"
                     placeholder="Testimonial Title"
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     name="title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
@@ -44,12 +44,12 @@ function TestimonialsForm() {
                 </div>
 
                 <div>
-                  <label className="mb-3 block font-bold text-black dark:text-white">
+                  <label className="mb-3 block text-sm  font-medium text-black dark:text-white">
                     Testimonials Detail
                   </label>
                   <textarea
                     placeholder="Testimonial Detail"
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     name="details"
                     value={detail}
                     onChange={(e) => {
@@ -59,12 +59,12 @@ function TestimonialsForm() {
                 </div>
 
                 <div>
-                  <label className="mb-3 block font-bold text-black dark:text-white">
+                  <label className="mb-3 block text-sm  font-medium text-black dark:text-white">
                     Designation
                   </label>
                   <input
                     placeholder="Designation"
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     name="designation"
                     value={designation}
                     onChange={(e) => {
