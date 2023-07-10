@@ -23,6 +23,7 @@ import AddContactForm from './pages/Form/AddContactForm';
 import Projects from './components/Projects';
 import PortfolioForm from './pages/Form/PortfolioForm';
 import Logo from './components/Logo';
+import Holidays from './components/Holidays';
 
 const Calendar = lazy(() => import('./pages/Calendar'));
 const Chart = lazy(() => import('./pages/Chart'));
@@ -49,6 +50,7 @@ function App() {
       <Routes>
         <Route path="/auth/signin" element={<SignIn />} />
         <Route path="/auth/signup" element={<SignUp />} />
+        
         <Route element={<DefaultLayout />}>
           <Route
             path="/Holidays&Events"
@@ -190,34 +192,26 @@ function App() {
             }
           />
 
-      <Route
-         path="/profile"
-                  element={
-                    <Suspense fallback={<Loader />}>
-                      <Profile />
-                    </Suspense>
-                  }
-                />
-
-<Route
-         path="/logo"
-                  element={
-                    <Suspense fallback={<Loader />}>
-                      <Logo />
-                    </Suspense>
-                  }
-                />
-
-
-
-
-
-
-
-
-
-          <Route index element={<ECommerce />} />
           <Route
+            path="/profile"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Profile />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="/logo"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Logo />
+              </Suspense>
+            }
+          />
+
+           <Route index element={<Holidays />} />
+        {/*  <Route
             path="/calendar"
             element={
               <Suspense fallback={<Loader />}>
@@ -281,8 +275,8 @@ function App() {
                 <Buttons />
               </Suspense>
             }
-          />
-        </Route>
+          /> */}
+        </Route> 
       </Routes>
     </>
   );
