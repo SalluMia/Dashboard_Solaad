@@ -22,6 +22,7 @@ import AddContact from './components/AddContact';
 import AddContactForm from './pages/Form/AddContactForm';
 import Projects from './components/Projects';
 import PortfolioForm from './pages/Form/PortfolioForm';
+import Logo from './components/Logo';
 
 const Calendar = lazy(() => import('./pages/Calendar'));
 const Chart = lazy(() => import('./pages/Chart'));
@@ -189,14 +190,31 @@ function App() {
             }
           />
 
+      <Route
+         path="/profile"
+                  element={
+                    <Suspense fallback={<Loader />}>
+                      <Profile />
+                    </Suspense>
+                  }
+                />
+
 <Route
-            path="/profile"
-            element={
-              <Suspense fallback={<Loader />}>
-                <Profile />
-              </Suspense>
-            }
-          />
+         path="/logo"
+                  element={
+                    <Suspense fallback={<Loader />}>
+                      <Logo />
+                    </Suspense>
+                  }
+                />
+
+
+
+
+
+
+
+
 
           <Route index element={<ECommerce />} />
           <Route
