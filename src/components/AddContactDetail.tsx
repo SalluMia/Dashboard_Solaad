@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
-const TestimonialsDetail = () => {
+const AddContactDetail = () => {
   return (
     <>
-      <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
         <div className="max-w-full overflow-x-auto">
           <table className="w-full table-auto">
             <thead>
@@ -15,9 +15,6 @@ const TestimonialsDetail = () => {
                 </th>
                 <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
                   Contents
-                </th>
-                <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                  Designation
                 </th>
                 <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                   Image
@@ -44,9 +41,6 @@ const TestimonialsDetail = () => {
                   <p className="text-black dark:text-white">
                     Ipsum dolor sit amet consectetur adipisicing.
                   </p>
-                </td>
-                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="text-black dark:text-white">CEO</p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <p className="inline-flex py-1 px-3 text-sm font-medium text-success">
@@ -231,9 +225,10 @@ const TestimonialsDetail = () => {
             </tbody>
           </table>
         </div>
-      </div>
+        </div>
+      
     </>
-  );
-};
+  )
+}
 
-export default TestimonialsDetail;
+export default AddContactDetail

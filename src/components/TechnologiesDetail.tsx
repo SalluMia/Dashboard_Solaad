@@ -19,12 +19,7 @@ const TechnologiesDetail = () => {
                 <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                   Image
                 </th>
-                {/* <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
-                Starting Time
-              </th>
-              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
-                Ending Time
-              </th> */}
+
                 <th className="py-4 px-4 font-medium text-black dark:text-white">
                   Actions
                 </th>
@@ -51,21 +46,9 @@ const TechnologiesDetail = () => {
                     />
                   </p>
                 </td>
-                {/* <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                <p className="text-black dark:text-white">Jan 13,2023</p>
-              </td>
 
-              <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                <p className="text-black dark:text-white">Jan 13,2023</p>
-              </td> */}
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <div className="flex items-center space-x-3.5">
-                    {/* <Link to='/events'>
-                     <button className="hover:text-primary">
-                      <FontAwesomeIcon icon={faEye} />
-                      </button>
-                     </Link> */}
-
                     <button
                       className="hover:text-primary "
                       style={{ color: '#e63946', fontSize: '15px' }}
