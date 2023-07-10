@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FileUploader } from 'react-drag-drop-files';
-import uploader from '../uploader';
+import  './uploader.css';
+
 const fileTypes = ['JPG', 'PNG', 'GIF'];
 
 export default function EventsForm() {
