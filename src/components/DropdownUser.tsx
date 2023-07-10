@@ -47,7 +47,7 @@ const DropdownUser = () => {
           <span className="block text-sm font-medium text-black dark:text-white">
             Thomas Anree
           </span>
-          <span className="block text-xs">UX Designer</span>
+          {/* <span className="block text-xs">UX Designer</span> */}
         </span>
 
         <span className="h-12 w-12 rounded-full">
@@ -108,9 +108,9 @@ const DropdownUser = () => {
               My Profile
             </Link>
           </li>
-          <li>
+           <li>
             <Link
-              to="#"
+              to="/logo"
               className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
             >
               <svg
@@ -126,10 +126,11 @@ const DropdownUser = () => {
                   fill=""
                 />
               </svg>
-              My Contacts
+              Change Logo Setting
             </Link>
           </li>
-          <li>
+
+        {/* <li>
             <Link
               to="/settings"
               className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
@@ -153,7 +154,7 @@ const DropdownUser = () => {
               </svg>
               Account Settings
             </Link>
-          </li>
+          </li>  */}
         </ul>
         <button className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
           <svg

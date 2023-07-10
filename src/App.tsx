@@ -1,7 +1,7 @@
 import { Suspense, lazy, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import ECommerce from './pages/Dashboard/ECommerce';
+// import ECommerce from './pages/Dashboard/ECommerce';
 import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
 import Loader from './common/Loader';
@@ -20,16 +20,20 @@ import SocialLinks from './components/SocialLinks';
 import SocialLinksForm from './pages/Form/SocialLinksForm';
 import AddContact from './components/AddContact';
 import AddContactForm from './pages/Form/AddContactForm';
+import Projects from './components/Projects';
+import PortfolioForm from './pages/Form/PortfolioForm';
+import Logo from './components/Logo';
+import Holidays from './components/Holidays';
 
-const Calendar = lazy(() => import('./pages/Calendar'));
-const Chart = lazy(() => import('./pages/Chart'));
-const FormElements = lazy(() => import('./pages/Form/FormElements'));
-const FormLayout = lazy(() => import('./pages/Form/FormLayout'));
+// const Calendar = lazy(() => import('./pages/Calendar'));
+// const Chart = lazy(() => import('./pages/Chart'));
+// const FormElements = lazy(() => import('./pages/Form/FormElements'));
+// const FormLayout = lazy(() => import('./pages/Form/FormLayout'));
 const Profile = lazy(() => import('./pages/Profile'));
-const Settings = lazy(() => import('./pages/Settings'));
-const Tables = lazy(() => import('./pages/Tables'));
-const Alerts = lazy(() => import('./pages/UiElements/Alerts'));
-const Buttons = lazy(() => import('./pages/UiElements/Buttons'));
+// const Settings = lazy(() => import('./pages/Settings'));
+// const Tables = lazy(() => import('./pages/Tables'));
+// const Alerts = lazy(() => import('./pages/UiElements/Alerts'));
+// const Buttons = lazy(() => import('./pages/UiElements/Buttons'));
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
 
 function App() {
@@ -46,6 +50,7 @@ function App() {
       <Routes>
         <Route path="/auth/signin" element={<SignIn />} />
         <Route path="/auth/signup" element={<SignUp />} />
+        
         <Route element={<DefaultLayout />}>
           <Route
             path="/Holidays&Events"
@@ -115,8 +120,8 @@ function App() {
             }
           />
 
-            {/* routes for add contact */}
-            <Route
+          {/* routes for add contact */}
+          <Route
             path="/addcontact"
             element={
               <Suspense fallback={<Loader />}>
@@ -169,15 +174,24 @@ function App() {
             }
           />
 
-          <Route index element={<ECommerce />} />
           <Route
-            path="/calendar"
+            path="/projects"
             element={
               <Suspense fallback={<Loader />}>
-                <Calendar />
+                <Projects />
               </Suspense>
             }
           />
+
+          <Route
+            path="/projectsform"
+            element={
+              <Suspense fallback={<Loader />}>
+                <PortfolioForm />
+              </Suspense>
+            }
+          />
+
           <Route
             path="/profile"
             element={
@@ -186,6 +200,26 @@ function App() {
               </Suspense>
             }
           />
+
+          <Route
+            path="/logo"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Logo />
+              </Suspense>
+            }
+          />
+
+           <Route index element={<Holidays />} />
+        {/*  <Route
+            path="/calendar"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Calendar />
+              </Suspense>
+            }
+          />
+
           <Route
             path="/forms/form-elements"
             element={
@@ -241,8 +275,8 @@ function App() {
                 <Buttons />
               </Suspense>
             }
-          />
-        </Route>
+          /> */}
+        </Route> 
       </Routes>
     </>
   );
