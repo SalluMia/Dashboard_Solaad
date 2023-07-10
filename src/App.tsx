@@ -18,6 +18,8 @@ import Testimonials from './components/Testimonials';
 import TestimonialsForm from './pages/Form/TestimonialsForm';
 import SocialLinks from './components/SocialLinks';
 import SocialLinksForm from './pages/Form/SocialLinksForm';
+import AddContact from './components/AddContact';
+import AddContactForm from './pages/Form/AddContactForm';
 
 const Calendar = lazy(() => import('./pages/Calendar'));
 const Chart = lazy(() => import('./pages/Chart'));
@@ -109,6 +111,24 @@ function App() {
             element={
               <Suspense fallback={<Loader />}>
                 <SocialLinksForm />
+              </Suspense>
+            }
+          />
+
+            {/* routes for add contact */}
+            <Route
+            path="/addcontact"
+            element={
+              <Suspense fallback={<Loader />}>
+                <AddContact />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/addcontactform"
+            element={
+              <Suspense fallback={<Loader />}>
+                <AddContactForm />
               </Suspense>
             }
           />
