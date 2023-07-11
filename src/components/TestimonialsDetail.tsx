@@ -83,9 +83,6 @@ const TestimonialsDetail = () => {
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="text-black dark:text-white">CEO</p>
-                </td>
-                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                 <p className="text-success dark:text-white"><b>Employee</b></p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
@@ -127,9 +124,7 @@ const TestimonialsDetail = () => {
                     Sitam amet consectetur adipisicing elit..
                   </p>
                 </td>
-                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="text-black dark:text-white">CEO</p>
-                </td>
+               
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                 <p className="text-success dark:text-white"><b>HR</b></p>
                 </td>
@@ -172,9 +167,7 @@ const TestimonialsDetail = () => {
                     Lorem ipsum dolor sit amet.
                   </p>
                 </td>
-                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="text-black dark:text-white">CEO</p>
-                </td>
+                
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <p className="text-success dark:text-white"><b>Project Manager</b></p>
                 </td>
