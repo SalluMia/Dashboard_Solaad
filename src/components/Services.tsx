@@ -48,7 +48,7 @@ function Services() {
                   <p className="inline-flex py-1 px-3 text-sm font-medium text-sm text-success">
                     <img
                       className="my-5 h-20 w-40 object-cover"
-                      src="https://images.unsplash.com/photo-1648679936825-7dc9b7355c7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
+                      src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=455&q=80"
                       alt="Event"
                     />
                   </p>
@@ -100,7 +100,7 @@ function Services() {
                   <p className="inline-flex py-1 px-3 text-sm font-medium text-sm text-success">
                     <img
                       className="my-5 h-20 w-40 object-cover"
-                      src="https://images.unsplash.com/photo-1648073380883-73fa85616559?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                      src="https://images.unsplash.com/photo-1475669698648-2f144fcaaeb1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
                       alt="Event"
                     />
                   </p>
@@ -147,7 +147,7 @@ function Services() {
                   <p className="inline-flex py-1 px-3 text-sm font-medium text-sm text-success">
                     <img
                       className="my-5 h-20 w-40 object-cover"
-                      src="https://images.unsplash.com/photo-1648679936825-7dc9b7355c7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
+                      src="https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1076&q=80"
                       alt="Event"
                     />
                   </p>
@@ -181,7 +181,7 @@ function Services() {
               <tr>
                 <td className="py-5 px-4 pl-9 xl:pl-11">
                   <h5 className="font-medium text-sm text-black dark:text-white">
-                    Christmis
+                      Quality Assurance
                   </h5>
                 </td>
                 <td className="py-5 px-4">
@@ -193,7 +193,7 @@ function Services() {
                   <p className="inline-flex py-1 px-3 text-sm font-medium text-sm text-success">
                     <img
                       className="my-5 h-20 w-40 object-cover"
-                      src="https://images.unsplash.com/photo-1648679936837-bbac8d879f14?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                      src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
                       alt="Event"
                     />
                   </p>

@@ -10,17 +10,17 @@ const TechnologiesDetail = () => {
           <table className="w-full table-auto">
             <thead>
               <tr className="bg-gray-2 text-left dark:bg-meta-4">
-                <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
+                <th className="min-w-[220px] py-4 px-4 font-bold text-sm text-black dark:text-white xl:pl-11">
                   Technology Title
                 </th>
-                <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                <th className="min-w-[150px] py-4 px-4 font-bold text-sm text-black dark:text-white">
                   Contents
                 </th>
-                <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                <th className="min-w-[120px] py-4 px-4 font-bold text-sm text-black dark:text-white">
                   Image
                 </th>
 
-                <th className="py-4 px-4 font-medium text-black dark:text-white">
+                <th className="py-4 px-4 font-bold text-sm text-black dark:text-white">
                   Actions
                 </th>
               </tr>
@@ -28,8 +28,8 @@ const TechnologiesDetail = () => {
             <tbody>
               <tr>
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                  <h5 className="font-medium text-black dark:text-white">
-                    Memorial day
+                  <h5 className="font-medium text-sm text-black dark:text-white">
+                    React.Js
                   </h5>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
@@ -38,10 +38,10 @@ const TechnologiesDetail = () => {
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="inline-flex py-1 px-3 text-sm font-medium text-success">
+                  <p className="inline-flex py-1 px-3 text-sm font-medium text-sm text-success">
                     <img
                       className="my-5 h-20 w-40 object-cover"
-                      src="https://images.unsplash.com/photo-1648679936825-7dc9b7355c7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
+                      src="https://miro.medium.com/v2/resize:fit:828/format:webp/0*0SmRi43-NRJNflvH.png"
                       alt="Event"
                     />
                   </p>
@@ -68,8 +68,8 @@ const TechnologiesDetail = () => {
               </tr>
               <tr>
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                  <h5 className="font-medium text-black dark:text-white">
-                    Labors Day
+                  <h5 className="font-medium text-sm text-black dark:text-white">
+                    Next.js
                   </h5>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
@@ -78,10 +78,10 @@ const TechnologiesDetail = () => {
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="inline-flex py-1 px-3 text-sm font-medium text-success">
+                  <p className="inline-flex py-1 px-3 text-sm font-medium text-sm text-success">
                     <img
                       className="my-5 h-20 w-40 object-cover"
-                      src="https://images.unsplash.com/photo-1648073380883-73fa85616559?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                      src="https://www.axelerant.com/hubfs/Imported_Blog_Media/nextjs_image1.jpg"
                       alt="Event"
                     />
                   </p>
@@ -115,8 +115,8 @@ const TechnologiesDetail = () => {
               </tr>
               <tr>
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                  <h5 className="font-medium text-black dark:text-white">
-                    National Day
+                  <h5 className="font-medium text-sm text-black dark:text-white">
+                    MongoDB
                   </h5>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
@@ -125,10 +125,10 @@ const TechnologiesDetail = () => {
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="inline-flex py-1 px-3 text-sm font-medium text-success">
+                  <p className="inline-flex py-1 px-3 text-sm font-medium text-sm text-success">
                     <img
                       className="my-5 h-20 w-40 object-cover"
-                      src="https://images.unsplash.com/photo-1648679936825-7dc9b7355c7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
+                      src="https://newrelic.com/sites/default/files/styles/800w/public/2021-10/mongo_logo.jpg?itok=Z1PabBZB"
                       alt="Event"
                     />
                   </p>
@@ -161,8 +161,8 @@ const TechnologiesDetail = () => {
               </tr>
               <tr>
                 <td className="py-5 px-4 pl-9 xl:pl-11">
-                  <h5 className="font-medium text-black dark:text-white">
-                    Christmis
+                  <h5 className="font-medium text-sm text-black dark:text-white">
+                    Node.Js
                   </h5>
                 </td>
                 <td className="py-5 px-4">
@@ -171,10 +171,10 @@ const TechnologiesDetail = () => {
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="inline-flex py-1 px-3 text-sm font-medium text-success">
+                  <p className="inline-flex py-1 px-3 text-sm font-medium text-sm text-success">
                     <img
                       className="my-5 h-20 w-40 object-cover"
-                      src="https://images.unsplash.com/photo-1648679936837-bbac8d879f14?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                      src="http://nodejs.org/images/logos/nodejs-dark.png"
                       alt="Event"
                     />
                   </p>

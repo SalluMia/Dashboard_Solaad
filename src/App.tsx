@@ -52,6 +52,7 @@ function App() {
         <Route path="/auth/signup" element={<SignUp />} />
         
         <Route element={<DefaultLayout />}>
+        <Route index path='/' element={<Events />} />
           <Route
             path="/Holidays&Events"
             element={
@@ -210,7 +211,7 @@ function App() {
             }
           />
 
-           <Route index element={<Holidays />} />
+          
         {/*  <Route
             path="/calendar"
             element={

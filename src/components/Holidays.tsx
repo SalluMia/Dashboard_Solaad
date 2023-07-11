@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {  faTrashAlt, faPenToSquare} from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faPenToSquare} from '@fortawesome/free-solid-svg-icons';
 
 export default function Holidays() {
 
@@ -20,12 +20,6 @@ export default function Holidays() {
               <th className="min-w-[120px] py-4 px-4 font-medium text-sm text-black dark:text-white">
                 <b>Image</b>
               </th>
-              {/* <th className="min-w-[120px] py-4 px-4 font-medium text-sm text-black dark:text-white">
-                Starting Time
-              </th>
-              <th className="min-w-[120px] py-4 px-4 font-medium text-sm text-black dark:text-white">
-                Ending Time
-              </th> */}
               <th className="py-4 px-4 font-medium text-sm text-black dark:text-white">
                 <b>Actions</b>
               </th>

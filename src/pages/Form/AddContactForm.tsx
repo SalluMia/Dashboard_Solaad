@@ -7,32 +7,32 @@ const AddContactForm = () => {
             <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
               <div className="flex flex-col gap-5.5 p-6.5">
                 <div>
-                  <label className="mb-3 block text-[14px] font-bold text-black dark:text-white ">
+                  <label className="mb-3 block text-[14px] font-medium text-sm text-black dark:text-white ">
                     Address
                   </label>
                   <input
                     type="text"
-                    placeholder="Address"
-                    className="font-small w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    placeholder="234 XC, Street 2 ..."
+                    className="text-sm font-medium w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-3 block text-[14px] font-bold text-black dark:text-white">
+                  <label className="mb-3 block text-[14px] font-medium text-sm text-black dark:text-white">
                     Email
                   </label>
                   <input
-                    placeholder="Email"
-                    className="font-small w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    placeholder="xyzwer@34gmail.com.."
+                    className="text-sm font-medium w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                   />
                 </div>
                 <div>
-                  <label className="mb-3 block text-[14px] font-bold text-black dark:text-white">
+                  <label className="mb-3 block text-[14px] font-medium text-sm text-black dark:text-white">
                     Phone
                   </label>
                   <input
                     placeholder="Phone"
-                    className="font-small w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    className="text-sm font-medium w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                   />
                 </div>
 
