@@ -49,19 +49,19 @@ const SocialLinksForm = () => {
                   </label>
                   <input
                     type="text"
-                    placeholder="facebook, insta, pinterest etc..."
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    placeholder="Platform"
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     name="platform"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-3 block text-sm font-medium text-black dark:text-white">
+                  <label className="mb-3 block font-bold text-black dark:text-white">
                     URL
                   </label>
                   <textarea
-                    placeholder="please enter the url of the social platform..."
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    placeholder="Enter URL"
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     name="url"
                   />
                 </div>
