@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './uploader.css';
+import { BASEURL } from '../../components/Api/Api_Url';
 
 export default function EventsForm() {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+
   const [dragActive, setDragActive] = useState(false);
   const [isFileSelected, setIsFileSelected] = useState(false);
+
+  ///////////////////////////// Code for drag drop image/////////////////////////////
+
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const handleDrag = (e: React.DragEvent) => {
@@ -30,12 +38,40 @@ export default function EventsForm() {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
       setIsFileSelected(true);
-      console.log('File selected:', e.target.files[0]);
+
+      console.log('File se  lected:', e.target.files[0]);
     }
   };
 
   const onButtonClick = () => {
     inputRef.current?.click();
+  };
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  const formData = new FormData();
+
+  formData.append('event_title', title);
+  formData.append('description', description);
+  if (isFileSelected) {
+    const fileInput = inputRef.current;
+    if (fileInput && fileInput.files && fileInput.files.length > 0) {
+      console.log(fileInput.files[0]);
+
+      formData.append('event_Picture', fileInput.files[0]);
+    }
+  }
+
+  const handleSubmits = async () => {
+    try {
+      const response = await axios.post(
+        `${BASEURL}/api/auth/holiday-event`,
+        formData
+      );
+      setTitle(''), setDescription(''), setIsFileSelected(false);
+      console.log(response); // Handle the response data
+    } catch (error) {
+      console.error(error); // Handle the error
+    }
   };
 
   return (
@@ -50,9 +86,14 @@ export default function EventsForm() {
                     <b>Event Title</b>
                   </label>
                   <input
+                    name="event_title"
+                    value={title}
+                    onChange={(e) => {
+                      setTitle(e.target.value);
+                    }}
                     type="text"
                     placeholder="place event's title here"
-                    className="w-full text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-small outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    className="font-small w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                   />
                 </div>
 
@@ -61,8 +102,13 @@ export default function EventsForm() {
                     <b>Content</b>
                   </label>
                   <textarea
+                    name="description"
+                    value={description}
+                    onChange={(e) => {
+                      setDescription(e.target.value);
+                    }}
                     placeholder="place brief detail of event's here"
-                    className="w-full text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-small outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    className="font-small w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                   />
                 </div>
 
@@ -75,6 +121,7 @@ export default function EventsForm() {
                   >
                     <input
                       ref={inputRef}
+                      name="event_Picture"
                       type="file"
                       id="input-file-upload"
                       multiple
@@ -89,20 +136,23 @@ export default function EventsForm() {
                       onDragOver={handleDrag}
                       onDrop={handleDrop}
                     >
-                    {isFileSelected ? (
+                      {isFileSelected ? (
                         <div>
-                        <p className=' text-success p-2 font-bold text-sm    rounded-lg'>Successfully selected the file !!</p>
-                      </div>
+                          <p className=" rounded-lg p-2 text-sm font-bold    text-success">
+                            Successfully selected the file !!
+                          </p>
+                        </div>
                       ) : (
-                        
                         <div>
-                        <p>Drag and drop your file here or</p>
-                        <button className="upload-button" onClick={onButtonClick}>
-                          Upload a file
-                        </button>
-                      </div>
+                          <p>Drag and drop your file here or</p>
+                          <button
+                            className="upload-button"
+                            onClick={onButtonClick}
+                          >
+                            Upload a file
+                          </button>
+                        </div>
                       )}
-
                     </label>
                     {dragActive && <div id="drag-file-element"></div>}
                   </form>
@@ -113,6 +163,7 @@ export default function EventsForm() {
                 <div className="">
                   <button
                     type="submit"
+                    onClick={handleSubmits}
                     className="custom-input-date custom-input-date-1 w-full rounded border-[1.5px] border-stroke bg-primary py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     style={{ color: 'white', fontWeight: 'bold' }}
                   >
