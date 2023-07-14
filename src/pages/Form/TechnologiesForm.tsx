@@ -1,7 +1,11 @@
-import { useState,useRef } from 'react';
-
+import { useState, useRef } from 'react';
+import axios from 'axios';
+import { BASEURL } from '../../components/Api/Api_Url';
 
 const TechnologiesForm = () => {
+  const [title, setTitle] = useState('');
+
+  ////////////////////////////////// code for image drag drop/////////////////////////////////////
   const [dragActive, setDragActive] = useState(false);
   const [isFileSelected, setIsFileSelected] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -38,6 +42,32 @@ const TechnologiesForm = () => {
     inputRef.current?.click();
   };
 
+  /////////////////////////////////////////////////////////////////////
+
+  const formData = new FormData();
+  formData.append('techName', title);
+  if (isFileSelected) {
+    const fileInput = inputRef.current;
+    if (fileInput && fileInput.files && fileInput.files.length > 0) {
+      console.log(fileInput.files[0]);
+
+      formData.append('image', fileInput.files[0]);
+    }
+  }
+
+  const handleSubmits = async () => {
+    try {
+      const response = await axios.post(
+        `${BASEURL}/api/auth/technology`,
+        formData
+      );
+      console.log(response);
+      setTitle(''), setIsFileSelected(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-1">
@@ -46,21 +76,22 @@ const TechnologiesForm = () => {
             <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
               <div className="flex flex-col gap-5.5 p-6.5">
                 <div>
-                  <label className="mb-3 block font-medium text-sm text-black dark:text-white">
+                  <label className="mb-3 block text-sm font-medium text-black dark:text-white">
                     Technology Title
                   </label>
                   <input
                     type="text"
                     placeholder="javascript, react, next etc..."
-                    className="w-full font-medium text-sm rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5  outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                    name="title"
-                 
+                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium  outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    name="techName"
+                    onChange={(e) => {
+                      setTitle(e.target.value);
+                    }}
                   />
                 </div>
 
-               
-  {/* file uploader start  */}
-  <div className="flex">
+                {/* file uploader start  */}
+                <div className="flex">
                   <form
                     id="form-file-upload"
                     onDragEnter={handleDrag}
@@ -84,14 +115,17 @@ const TechnologiesForm = () => {
                     >
                       {isFileSelected ? (
                         <div>
-                          <p className="text-success p-2 font-bold text-sm rounded-lg">
+                          <p className="rounded-lg p-2 text-sm font-bold text-success">
                             Successfully selected the file !!
                           </p>
                         </div>
                       ) : (
                         <div>
                           <p>Drag and drop your file here or</p>
-                          <button className="upload-button" onClick={onButtonClick}>
+                          <button
+                            className="upload-button"
+                            onClick={onButtonClick}
+                          >
                             Upload a file
                           </button>
                         </div>
@@ -104,6 +138,7 @@ const TechnologiesForm = () => {
                 {/* file uploader end  */}
                 <div className="relative">
                   <button
+                    onClick={handleSubmits}
                     type="submit"
                     className="custom-input-date custom-input-date-1 w-full rounded border-[1.5px] border-stroke bg-primary py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     style={{ color: 'white', fontWeight: 'bold' }}
