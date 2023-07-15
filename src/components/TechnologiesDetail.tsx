@@ -146,10 +146,6 @@ import axios from 'axios';
 const TechnologiesDetail = () => {
   const [techData, setTechData] = useState([]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const fetchData = async () => {
     try {
       const response = await axios.get(`${BASEURL}/api/auth/technologies`);
@@ -159,7 +155,9 @@ const TechnologiesDetail = () => {
       console.log(error);
     }
   };
-
+  useEffect(() => {
+    fetchData();
+  }, []);
   const handleDelete = async (id) => {
     try {
       await axios.delete(`${BASEURL}/api/auth/technology/${id}`);

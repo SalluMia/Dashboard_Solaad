@@ -1,6 +1,12 @@
+import axios from 'axios';
 import { useState, useRef } from 'react';
+import { BASEURL } from '../../components/Api/Api_Url';
 
 const SocialLinksForm = () => {
+  const [platform, setPlatform] = useState('');
+  const [url, setUrl] = useState('');
+
+  ///////////////////////////////////////// code for drag drop images ///////////////////////////////////
   const [dragActive, setDragActive] = useState(false);
   const [isFileSelected, setIsFileSelected] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -36,13 +42,39 @@ const SocialLinksForm = () => {
   const onButtonClick = () => {
     inputRef.current?.click();
   };
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  const formData = new FormData();
+  formData.append('platform', platform);
+  formData.append('url', url);
+  if (isFileSelected) {
+    const fileInput = inputRef.current;
+    if (fileInput && fileInput.files && fileInput.files.length > 0) {
+      console.log(fileInput.files[0]);
+
+      formData.append('image', fileInput.files[0]);
+    }
+  }
+  const handleSubmits = async () => {
+    try {
+      const response = await axios.post(
+        `${BASEURL}/api/auth/social-media`,
+        formData
+      );
+
+      console.log(response);
+      setPlatform(''), setUrl(''), setIsFileSelected(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-1">
         <div className="flex flex-col gap-9">
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-              <form className="flex flex-col gap-5.5 p-6.5">
+              <div className="flex flex-col gap-5.5 p-6.5">
                 <div>
                   <label className="mb-3 block text-sm font-medium text-black dark:text-white">
                     Platform
@@ -52,6 +84,9 @@ const SocialLinksForm = () => {
                     placeholder="Platform"
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     name="platform"
+                    onChange={(e) => {
+                      setPlatform(e.target.value);
+                    }}
                   />
                 </div>
 
@@ -59,10 +94,14 @@ const SocialLinksForm = () => {
                   <label className="mb-3 block font-bold text-black dark:text-white">
                     URL
                   </label>
-                  <textarea
+                  <input
+                    type="text"
                     placeholder="Enter URL"
                     className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     name="url"
+                    onChange={(e) => {
+                      setUrl(e.target.value);
+                    }}
                   />
                 </div>
 
@@ -115,13 +154,14 @@ const SocialLinksForm = () => {
                 <div className="relative">
                   <button
                     type="submit"
+                    onClick={handleSubmits}
                     className="custom-input-date custom-input-date-1 w-full rounded border-[1.5px] border-stroke bg-primary py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     style={{ color: 'white', fontWeight: 'bold' }}
                   >
                     Add Social Link
                   </button>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
