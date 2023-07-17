@@ -27,7 +27,7 @@ import Logo from './components/Logo';
 const Profile = lazy(() => import('./pages/Profile'));
 
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
-import { Toaster } from 'react-hot-toast';
+
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -40,7 +40,7 @@ function App() {
     <Loader />
   ) : (
     <>
-      <Toaster position="top-center" reverseOrder={false} />
+
       <Routes>
         <Route path="/auth/signin" element={<SignIn />} />
         <Route path="/auth/signup" element={<SignUp />} />
