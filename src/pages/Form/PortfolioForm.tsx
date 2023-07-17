@@ -2,14 +2,26 @@ import React, { useState, useRef } from 'react';
 import './uploader.css';
 import axios from 'axios';
 import { BASEURL } from '../../components/Api/Api_Url';
+import { useParams } from 'react-router-dom';
+import { Toaster, toast } from 'react-hot-toast';
 
 function PortfolioForm() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('');
+  const [url, setUrl] = useState('');
+  const [projClient, setProjClient] = useState('');
+  const [date, setDate] = useState('');
+
+  const [titleError, setTitleError] = useState('');
+  const [categoryError, setCategoryError] = useState('');
+  const [isFileSelected, setIsFileSelected] = useState(false);
+
+  const { id } = useParams();
+  console.log(id);
 
   /////////////////////////////////////////// code for image drag drop /////////////////////////////////
   const [dragActive, setDragActive] = useState(false);
-  const [isFileSelected, setIsFileSelected] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleDrag = (e: React.DragEvent) => {
@@ -48,29 +60,69 @@ function PortfolioForm() {
   const formData = new FormData();
   formData.append('projName', title);
   formData.append('projDescription', description);
+  formData.append('categoryName', category);
+  formData.append('projUrl', url);
+  formData.append('projClientName', projClient);
+  formData.append('releaseDate', date);
+
   if (isFileSelected) {
     const fileInput = inputRef.current;
     if (fileInput && fileInput.files && fileInput.files.length > 0) {
-      console.log(fileInput.files[0]);
+      // console.log(fileInput.files[0]);
 
       formData.append('projImage', fileInput.files[0]);
     }
   }
 
+  const validateForm = () => {
+    let isValid = true;
+
+    if (!title) {
+      setTitleError('Please enter the project title.');
+      isValid = false;
+    } else {
+      setTitleError('');
+    }
+
+    if (!category) {
+      setCategoryError('Please enter the project category.');
+      isValid = false;
+    } else {
+      setCategoryError('');
+    }
+
+    return isValid;
+  };
+
   const handleSubmits = async () => {
-    try {
-      const response = await axios.post(
-        `${BASEURL}/api/auth/portfolio`,
-        formData
-      );
-      console.log(response);
-    } catch (error) {
-      console.log(error);
+    if (validateForm()) {
+      try {
+        const response = await axios.post(
+          `${BASEURL}/api/auth/portfolio`,
+          formData
+        );
+        if (response.status == 200) {
+          setTitle(''),
+            setCategory(''),
+            setCategoryError(''),
+            setDate(''),
+            setDescription(''),
+            setIsFileSelected(false);
+          setProjClient('');
+          setUrl('');
+
+          toast.success('Successfully Submitted!');
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   return (
     <div>
+      <Toaster position="top-center" reverseOrder={false} />
+
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-1">
         <div className="flex flex-col gap-9">
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -82,27 +134,118 @@ function PortfolioForm() {
                   </label>
                   <input
                     name="projName"
+                    value={title}
                     onChange={(e) => {
                       setTitle(e.target.value);
                     }}
                     type="text"
                     placeholder="enter project title here..."
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    className={`w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
+                      titleError ? 'border-red-500' : ''
+                    }`}
                   />
+                  {titleError && (
+                    <p className="text-red-500 text-xs">{titleError}</p>
+                  )}
                 </div>
-
+                <div>
+                  <label className="mb-3 block text-sm font-medium text-black dark:text-white">
+                    Category
+                  </label>
+                  <input
+                    name="categoryName"
+                    value={category}
+                    onChange={(e) => {
+                      setCategory(e.target.value);
+                    }}
+                    type="text"
+                    placeholder="enter project category here..."
+                    className={`w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
+                      categoryError ? 'border-red-500' : ''
+                    }`}
+                  />
+                  {categoryError && (
+                    <p className="text-red-500 text-xs">{categoryError}</p>
+                  )}
+                </div>
                 <div>
                   <label className="mb-3 block text-sm font-medium text-black dark:text-white">
                     Project Description
                   </label>
                   <textarea
                     name="projDescription"
+                    value={description}
                     onChange={(e) => {
                       setDescription(e.target.value);
                     }}
                     placeholder="enter project description..."
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    className={`w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
+                      categoryError ? 'border-red-500' : ''
+                    }`}
                   />
+                  {categoryError && (
+                    <p className="text-red-500 text-xs">{categoryError}</p>
+                  )}
+                </div>
+                <div>
+                  <label className="mb-3 block text-sm font-medium text-black dark:text-white">
+                    Project URL
+                  </label>
+                  <input
+                    type="text"
+                    name="projUrl"
+                    value={url}
+                    onChange={(e) => {
+                      setUrl(e.target.value);
+                    }}
+                    placeholder="enter project URL..."
+                    className={`w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
+                      categoryError ? 'border-red-500' : ''
+                    }`}
+                  />
+                  {categoryError && (
+                    <p className="text-red-500 text-xs">{categoryError}</p>
+                  )}
+                </div>
+                <div>
+                  <label className="mb-3 block text-sm font-medium text-black dark:text-white">
+                    Project Client
+                  </label>
+                  <input
+                    type="text"
+                    name="projClientName"
+                    value={projClient}
+                    onChange={(e) => {
+                      setProjClient(e.target.value);
+                    }}
+                    placeholder="enter project client..."
+                    className={`w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
+                      categoryError ? 'border-red-500' : ''
+                    }`}
+                  />
+                  {categoryError && (
+                    <p className="text-red-500 text-xs">{categoryError}</p>
+                  )}
+                </div>
+                <div>
+                  <label className="mb-3 block text-sm font-medium text-black dark:text-white">
+                    Release Date
+                  </label>
+                  <input
+                    type="date"
+                    name="releaseDate"
+                    value={date}
+                    onChange={(e) => {
+                      setDate(e.target.value);
+                    }}
+                    placeholder="enter project release date..."
+                    className={`w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
+                      categoryError ? 'border-red-500' : ''
+                    }`}
+                  />
+                  {categoryError && (
+                    <p className="text-red-500 text-xs">{categoryError}</p>
+                  )}
                 </div>
 
                 {/* file uploader start  */}

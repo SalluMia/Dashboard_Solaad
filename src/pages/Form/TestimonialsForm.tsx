@@ -1,15 +1,25 @@
+import React, { useState, useRef, useEffect } from 'react';
+import './uploader.css';
 import axios from 'axios';
-import React, { useState, useRef } from 'react';
 import { BASEURL } from '../../components/Api/Api_Url';
+import { useParams } from 'react-router-dom';
+import { Toaster, toast } from 'react-hot-toast';
 
 function TestimonialsForm() {
   const [name, setName] = useState('');
   const [feedback, setFeedback] = useState('');
   const [designation, setDesignation] = useState('');
 
-  ///////////////////////////////////////////// code fpr image drag drop////////////////////////////////
-  const [dragActive, setDragActive] = useState(false);
+  const [nameError, setNameError] = useState('');
+  const [feedbackError, setFeedbackError] = useState('');
+  const [designationError, setDesignationError] = useState('');
   const [isFileSelected, setIsFileSelected] = useState(false);
+
+  const { id } = useParams();
+  console.log(id);
+
+  ///////////////////////////////////////////// code for image drag drop////////////////////////////////
+  const [dragActive, setDragActive] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleDrag = (e: React.DragEvent) => {
@@ -59,24 +69,89 @@ function TestimonialsForm() {
     }
   }
 
-  const handleSubmits = async () => {
-    try {
-      const response = await axios.post(
-        `${BASEURL}/api/auth/testimonial`,
-        formData
-      );
+  const validateForm = () => {
+    let isValid = true;
 
-      setName(''),
-        setFeedback(''),
-        setDesignation(''),
+    if (!name) {
+      setNameError('Please enter the client name.');
+      isValid = false;
+    } else {
+      setNameError('');
+    }
+
+    if (!feedback) {
+      setFeedbackError('Please enter the feedback.');
+      isValid = false;
+    } else {
+      setFeedbackError('');
+    }
+    if (!designation) {
+      setDesignationError('Please enter the Designation.');
+      isValid = false;
+    } else {
+      setDesignationError('');
+    }
+
+    return isValid;
+  };
+
+  const handleSubmits = async () => {
+    if (validateForm()) {
+      try {
+        const response = await axios.post(
+          `${BASEURL}/api/auth/testimonial`,
+          formData
+        );
+
+        if (response.status === 200) {
+          setName('');
+          setFeedback('');
+          setDesignation('');
+          setIsFileSelected(false);
+          toast.success('Form submitted successfully');
+        }
+
+        setName('');
+        setFeedback('');
+        setDesignation('');
         setIsFileSelected(false);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
+  // const getData = async () => {
+  //   try {
+  //     const response = await axios.post(
+  //       `${BASEURL}/api/auth/testimonial`,
+  //       formData
+  //     );
+
+  //     if (response.status == 200) {
+  //       setName(''),
+  //         setFeedback(''),
+  //         setDesignation(''),
+  //         setIsFileSelected(false);
+  //       alert('Form submitted successfully');
+  //     }
+
+  //     setName(''),
+  //       setFeedback(''),
+  //       setDesignation(''),
+  //       setIsFileSelected(false);
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   getData();
+  // }, []);
+
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-1">
         <div className="flex flex-col gap-9">
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -88,27 +163,39 @@ function TestimonialsForm() {
                   </label>
                   <input
                     name="customerName"
+                    value={name}
                     onChange={(e) => {
                       setName(e.target.value);
                     }}
                     type="text"
                     placeholder="Mr. John Doe.."
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    className={`w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
+                      nameError ? 'border-red-500' : ''
+                    }`}
                   />
+                  {nameError && (
+                    <p className="text-red-500 text-xs">{nameError}</p>
+                  )}
                 </div>
 
                 <div>
                   <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-                    Feed Back
+                    Feedback
                   </label>
                   <textarea
-                    placeholder="best feed back !!"
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    value={feedback}
+                    placeholder="best feedback !!"
+                    className={`w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
+                      feedbackError ? 'border-red-500' : ''
+                    }`}
                     name="customerFeedback"
                     onChange={(e) => {
                       setFeedback(e.target.value);
                     }}
                   />
+                  {feedbackError && (
+                    <p className="text-red-500 text-xs">{feedbackError}</p>
+                  )}
                 </div>
 
                 <div>
@@ -117,12 +204,18 @@ function TestimonialsForm() {
                   </label>
                   <input
                     placeholder="client designation"
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    className={`w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
+                      designationError ? 'border-red-500' : ''
+                    }`}
                     name="customerDesignation"
+                    value={designation}
                     onChange={(e) => {
                       setDesignation(e.target.value);
                     }}
                   />
+                  {designationError && (
+                    <p className="text-red-500 text-xs">{designationError}</p>
+                  )}
                 </div>
                 {/* file uploader start  */}
                 <div className="flex">
@@ -149,7 +242,7 @@ function TestimonialsForm() {
                     >
                       {isFileSelected ? (
                         <div>
-                          <p className="rounded-lg p-2 text-sm text-sm font-medium text-success">
+                          <p className="rounded-lg p-2 text-sm font-medium text-success">
                             Successfully selected the file !!
                           </p>
                         </div>

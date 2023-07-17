@@ -1,10 +1,15 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { BASEURL } from '../../components/Api/Api_Url';
+import { useParams } from 'react-router-dom';
+import { Toaster, toast } from 'react-hot-toast';
 
 const TechnologiesForm = () => {
   const [title, setTitle] = useState('');
+  const [titleError, setTitleError] = useState('');
 
+  const { id } = useParams();
+  console.log(id);
   ////////////////////////////////// code for image drag drop/////////////////////////////////////
   const [dragActive, setDragActive] = useState(false);
   const [isFileSelected, setIsFileSelected] = useState(false);
@@ -56,20 +61,49 @@ const TechnologiesForm = () => {
   }
 
   const handleSubmits = async () => {
-    try {
-      const response = await axios.post(
-        `${BASEURL}/api/auth/technology`,
-        formData
-      );
-      console.log(response);
-      setTitle(''), setIsFileSelected(false);
-    } catch (error) {
-      console.log(error);
+    let isValid = true;
+
+    if (!title) {
+      setTitleError('Please enter the technology title.');
+      isValid = false;
+    } else {
+      setTitleError('');
+    }
+
+    if (isValid) {
+      try {
+        const response = await axios.post(
+          `${BASEURL}/api/auth/technology`,
+          formData
+        );
+        if (response.status == 200) {
+          setTitle('');
+          setIsFileSelected(false);
+          toast.success('Successfully Submitted!');
+        }
+      } catch (error) {
+        alert(error);
+      }
     }
   };
 
+  const getData = async () => {
+    try {
+      // const response = await axios.post(`${BASEURL}/api/auth/technology`, id);
+      // console.log(response);
+      setTitle(''), setIsFileSelected(false);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div>
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-1">
         <div className="flex flex-col gap-9">
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -82,12 +116,18 @@ const TechnologiesForm = () => {
                   <input
                     type="text"
                     placeholder="javascript, react, next etc..."
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium  outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    className={`w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
+                      titleError ? 'border-red-500' : ''
+                    }`}
                     name="techName"
+                    value={title}
                     onChange={(e) => {
                       setTitle(e.target.value);
                     }}
                   />
+                  {titleError && (
+                    <p className="text-red-500 text-xs">{titleError}</p>
+                  )}
                 </div>
 
                 {/* file uploader start  */}

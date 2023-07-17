@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { BASEURL } from './Api/Api_Url';
+import { Toaster, toast } from 'react-hot-toast';
 
 const SocialLinksDetail = () => {
   const [socialData, setSocialData] = useState([]);
@@ -20,11 +21,11 @@ const SocialLinksDetail = () => {
     fetchData();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id: any) => {
     try {
       await axios.delete(`${BASEURL}/api/auth/social-media/${id}`);
       setSocialData((prevData) => prevData.filter((item) => item._id !== id));
-      console.log('Data deleted');
+      toast.success('Data deleted');
     } catch (error) {
       console.log(error);
     }
@@ -32,6 +33,7 @@ const SocialLinksDetail = () => {
 
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
         <div className="max-w-full overflow-x-auto">
           <table className="w-full table-auto">
@@ -53,49 +55,6 @@ const SocialLinksDetail = () => {
               </tr>
             </thead>
             <tbody>
-              {/* <tr>
-                <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                  <h5 className="font-medium text-sm text-black dark:text-white">
-                    facebook
-                  </h5>
-                </td>
-                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="text-black dark:text-white">
-                    <a href="https://www.facebook.com">https://www.facebook.com</a>
-                  </p>
-                </td>
-
-                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="inline-flex py-1 px-3 text-sm font-medium text-sm text-success">
-                    <img
-                      className="my-5 h-20 w-40 object-cover"
-                      src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
-                      alt="Event"
-                    />
-                  </p>
-                </td>
-              
-                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <div className="flex items-center space-x-3.5">
-                  
-
-                    <button
-                      className="hover:text-primary "
-                      style={{ color: '#e63946', fontSize: '15px' }}
-                    >
-                      <FontAwesomeIcon icon={faTrashAlt} />
-                    </button>
-                    <Link to="/sociallinksform">
-                      <button
-                        className="hover:text-primary"
-                        style={{ color: '#40916c', fontSize: '16px' }}
-                      >
-                        <FontAwesomeIcon icon={faPenToSquare} />
-                      </button>
-                    </Link>
-                  </div>
-                </td>
-              </tr> */}
               {socialData.map((item) => {
                 const { _id, platform, url, image } = item;
                 return (
@@ -130,7 +89,7 @@ const SocialLinksDetail = () => {
                         >
                           <FontAwesomeIcon icon={faTrashAlt} />
                         </button>
-                        <Link to="/sociallinksform">
+                        <Link to={`/sociallinksform/${_id}`}>
                           <button
                             className="hover:text-primary"
                             style={{ color: '#40916c', fontSize: '16px' }}

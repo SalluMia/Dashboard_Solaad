@@ -23,18 +23,11 @@ import AddContactForm from './pages/Form/AddContactForm';
 import Projects from './components/Projects';
 import PortfolioForm from './pages/Form/PortfolioForm';
 import Logo from './components/Logo';
-import Holidays from './components/Holidays';
 
-// const Calendar = lazy(() => import('./pages/Calendar'));
-// const Chart = lazy(() => import('./pages/Chart'));
-// const FormElements = lazy(() => import('./pages/Form/FormElements'));
-// const FormLayout = lazy(() => import('./pages/Form/FormLayout'));
 const Profile = lazy(() => import('./pages/Profile'));
-// const Settings = lazy(() => import('./pages/Settings'));
-// const Tables = lazy(() => import('./pages/Tables'));
-// const Alerts = lazy(() => import('./pages/UiElements/Alerts'));
-// const Buttons = lazy(() => import('./pages/UiElements/Buttons'));
+
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -47,17 +40,36 @@ function App() {
     <Loader />
   ) : (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       <Routes>
         <Route path="/auth/signin" element={<SignIn />} />
         <Route path="/auth/signup" element={<SignUp />} />
-        
+
         <Route element={<DefaultLayout />}>
-        <Route index path='/' element={<Events />} />
+          <Route index path="/" element={<Events />} />
+
+          {/* //////// routes for holiday and events/////////// */}
           <Route
             path="/Holidays&Events"
             element={
               <Suspense fallback={<Loader />}>
                 <Events />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/events"
+            element={
+              <Suspense fallback={<Loader />}>
+                <EventsForm />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/events/:id"
+            element={
+              <Suspense fallback={<Loader />}>
+                <EventsForm />
               </Suspense>
             }
           />
@@ -67,16 +79,16 @@ function App() {
           <Route path="/technologies" element={<Technologies />} />
 
           <Route
-            path="/events"
+            path="/technologyform"
             element={
               <Suspense fallback={<Loader />}>
-                <EventsForm />
+                <TechnologiesForm />
               </Suspense>
             }
           />
 
           <Route
-            path="/technologyform"
+            path="/technologyform/:id"
             element={
               <Suspense fallback={<Loader />}>
                 <TechnologiesForm />
@@ -102,6 +114,14 @@ function App() {
               </Suspense>
             }
           />
+          <Route
+            path="/testimonialsform/:id"
+            element={
+              <Suspense fallback={<Loader />}>
+                <TestimonialsForm />
+              </Suspense>
+            }
+          />
 
           {/* routes for social links */}
           <Route
@@ -114,6 +134,14 @@ function App() {
           />
           <Route
             path="/sociallinksform"
+            element={
+              <Suspense fallback={<Loader />}>
+                <SocialLinksForm />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/sociallinksform/:id"
             element={
               <Suspense fallback={<Loader />}>
                 <SocialLinksForm />
@@ -138,7 +166,15 @@ function App() {
               </Suspense>
             }
           />
-
+          <Route
+            path={`/addcontactform/:id`}
+            element={
+              <Suspense fallback={<Loader />}>
+                <AddContactForm />
+              </Suspense>
+            }
+          />
+          {/* ///////////// routes for services///////////////// */}
           <Route
             path="/Services"
             element={
@@ -156,7 +192,7 @@ function App() {
               </Suspense>
             }
           />
-
+          {/* ///////////////////// routes for stratigies ////////////////////// */}
           <Route
             path="/strategies"
             element={
@@ -174,7 +210,7 @@ function App() {
               </Suspense>
             }
           />
-
+          {/* /////////////////////////// routes for projects //////////////////////////// */}
           <Route
             path="/projects"
             element={
@@ -186,6 +222,14 @@ function App() {
 
           <Route
             path="/projectsform"
+            element={
+              <Suspense fallback={<Loader />}>
+                <PortfolioForm />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/projectsform/:id"
             element={
               <Suspense fallback={<Loader />}>
                 <PortfolioForm />
@@ -211,8 +255,7 @@ function App() {
             }
           />
 
-          
-        {/*  <Route
+          {/*  <Route
             path="/calendar"
             element={
               <Suspense fallback={<Loader />}>
@@ -277,7 +320,7 @@ function App() {
               </Suspense>
             }
           /> */}
-        </Route> 
+        </Route>
       </Routes>
     </>
   );

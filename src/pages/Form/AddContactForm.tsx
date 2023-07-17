@@ -1,8 +1,11 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BASEURL } from '../../components/Api/Api_Url';
+import { useParams } from 'react-router-dom';
 
 const AddContactForm = () => {
+  const { id } = useParams();
+  // console.log(id);
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -20,6 +23,25 @@ const AddContactForm = () => {
       console.log(error);
     }
   };
+
+  const getData = async () => {
+    try {
+      const response = await axios.post(`${BASEURL}/api/auth/contact`, {
+        id,
+      });
+      console.log(response);
+      setEmail(''), setAddress(''), setPhone('');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (id) {
+      getData();
+    }
+  }, [id]);
+
   return (
     <div>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-1">
@@ -33,6 +55,7 @@ const AddContactForm = () => {
                   </label>
                   <input
                     name="address"
+                    value={address}
                     onChange={(e) => {
                       setAddress(e.target.value);
                     }}
@@ -47,8 +70,10 @@ const AddContactForm = () => {
                   <label className="mb-3 block text-[14px] text-sm font-medium text-black dark:text-white">
                     Email
                   </label>
+
                   <input
                     name="email"
+                    value={email}
                     onChange={(e) => {
                       setEmail(e.target.value);
                     }}
@@ -65,6 +90,7 @@ const AddContactForm = () => {
                   <input
                     type="phone"
                     name="phone"
+                    value={phone}
                     onChange={(e) => {
                       setPhone(e.target.value);
                     }}

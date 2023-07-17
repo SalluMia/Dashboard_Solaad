@@ -84,7 +84,7 @@ const AddContactDetail = () => {
                           >
                             <FontAwesomeIcon icon={faTrashAlt} />
                           </button>
-                          <Link to="/addcontactform">
+                          <Link to={`/addcontactform/${_id}`}>
                             <button
                               className="hover:text-primary"
                               style={{ color: '#40916c', fontSize: '16px' }}

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { BASEURL } from './Api/Api_Url';
+import { Toaster, toast } from 'react-hot-toast';
 
 const TestimonialsDetail = () => {
   const [testiData, setTestidata] = useState<Array<any>>([]);
@@ -27,7 +28,7 @@ const TestimonialsDetail = () => {
     try {
       await axios.delete(`${BASEURL}/api/auth/testimonial/${id}`);
       setTestidata((prevData) => prevData.filter((item) => item._id !== id));
-      alert('Data deleted');
+      toast.success('Data deleted');
     } catch (error) {
       console.log(error);
     }
@@ -35,6 +36,7 @@ const TestimonialsDetail = () => {
 
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
         <div className="max-w-full overflow-x-auto">
           <table className="w-full table-auto">
@@ -101,7 +103,7 @@ const TestimonialsDetail = () => {
                         >
                           <FontAwesomeIcon icon={faTrashAlt} />
                         </button>
-                        <Link to="/testimonialsform">
+                        <Link to={`/testimonialsform/${_id}`}>
                           <button
                             className="hover:text-primary"
                             style={{ color: '#40916c', fontSize: '16px' }}

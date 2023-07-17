@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './uploader.css';
 import { BASEURL } from '../../components/Api/Api_Url';
+import { useParams } from 'react-router-dom';
+import { Toaster, toast } from 'react-hot-toast';
 
 export default function EventsForm() {
   const [title, setTitle] = useState('');
@@ -10,6 +12,10 @@ export default function EventsForm() {
   const [dragActive, setDragActive] = useState(false);
   const [isFileSelected, setIsFileSelected] = useState(false);
 
+  const [titleError, setTitleError] = useState('');
+  const [descriptionError, setDescriptionError] = useState('');
+
+  const { id } = useParams();
   ///////////////////////////// Code for drag drop image/////////////////////////////
 
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -61,11 +67,54 @@ export default function EventsForm() {
     }
   }
 
+  // ... (code for handling file selection)
+
+  const validateForm = () => {
+    let isValid = true;
+
+    if (!title) {
+      setTitleError('Please enter the event title.');
+      isValid = false;
+    } else {
+      setTitleError('');
+    }
+
+    if (!description) {
+      setDescriptionError('Please enter the event description.');
+      isValid = false;
+    } else {
+      setDescriptionError('');
+    }
+
+    return isValid;
+  };
+
   const handleSubmits = async () => {
+    if (validateForm()) {
+      try {
+        const response = await axios.post(
+          `${BASEURL}/api/auth/holiday-event`,
+          formData
+        );
+        if (response.status === 200) {
+          setTitle('');
+          setDescription('');
+          setIsFileSelected(false);
+          toast.success('Successfully Submitted!');
+        }
+        console.log(response); // Handle the response data
+      } catch (error) {
+        console.error(error);
+        toast.error('Failed to submit the form. Please try again.');
+      }
+    }
+  };
+
+  const getData = async () => {
     try {
       const response = await axios.post(
         `${BASEURL}/api/auth/holiday-event`,
-        formData
+        id
       );
       setTitle(''), setDescription(''), setIsFileSelected(false);
       console.log(response); // Handle the response data
@@ -74,8 +123,14 @@ export default function EventsForm() {
     }
   };
 
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div>
+      <Toaster position="top-center" reverseOrder={false} />
+
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-1">
         <div className="flex flex-col gap-9">
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -93,8 +148,14 @@ export default function EventsForm() {
                     }}
                     type="text"
                     placeholder="place event's title here"
-                    className="font-small w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    required
+                    className={`font-small w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
+                      titleError ? 'border-red-500' : ''
+                    }`}
                   />
+                  {titleError && (
+                    <p className="text-red-500 text-xs">{titleError}</p>
+                  )}
                 </div>
 
                 <div>
@@ -108,8 +169,14 @@ export default function EventsForm() {
                       setDescription(e.target.value);
                     }}
                     placeholder="place brief detail of event's here"
-                    className="font-small w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    required
+                    className={`font-small w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
+                      descriptionError ? 'border-red-500' : ''
+                    }`}
                   />
+                  {descriptionError && (
+                    <p className="text-red-500 text-xs">{descriptionError}</p>
+                  )}
                 </div>
 
                 {/* file uploader start  */}
