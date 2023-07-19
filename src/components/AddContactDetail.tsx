@@ -5,6 +5,8 @@ import { faTrashAlt, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { BASEURL } from './Api/Api_Url';
 
+import { Toaster, toast } from 'react-hot-toast';
+
 const AddContactDetail = () => {
   const [contactData, setConatctData] = useState<Array<any>>([]);
 
@@ -22,11 +24,11 @@ const AddContactDetail = () => {
     fetchData();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id: any) => {
     try {
       await axios.delete(`${BASEURL}/api/auth/contact/${id}`);
       setConatctData((prevData) => prevData.filter((item) => item._id !== id));
-      console.log('Data deleted');
+      toast.success('Data Deleted');
     } catch (error) {
       console.log(error);
     }
@@ -34,6 +36,8 @@ const AddContactDetail = () => {
 
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
+
       <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
         <div className="max-w-full overflow-x-auto">
           <table className="w-full table-auto">

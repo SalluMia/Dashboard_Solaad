@@ -28,7 +28,6 @@ const Profile = lazy(() => import('./pages/Profile'));
 
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
 
-
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -40,7 +39,6 @@ function App() {
     <Loader />
   ) : (
     <>
-
       <Routes>
         <Route path="/auth/signin" element={<SignIn />} />
         <Route path="/auth/signup" element={<SignUp />} />
@@ -204,6 +202,14 @@ function App() {
 
           <Route
             path="/strategiesform"
+            element={
+              <Suspense fallback={<Loader />}>
+                <StrategiesForm />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/strategiesform/:id"
             element={
               <Suspense fallback={<Loader />}>
                 <StrategiesForm />

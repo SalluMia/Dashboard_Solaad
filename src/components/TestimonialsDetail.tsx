@@ -86,7 +86,7 @@ const TestimonialsDetail = () => {
                       </p>
                     </td>
                     <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                      <p className="inline-flex py-1 px-3 text-sm  text-sm   font-bold text-success">
+                      <p className="inline-flex py-1 px-3 text-sm   font-bold text-success">
                         <img
                           className="my-5 h-20 w-40 object-cover"
                           src={customerImage}
