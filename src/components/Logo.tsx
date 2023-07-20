@@ -123,10 +123,10 @@ function Logo() {
             />
 
             <div className="flex justify-center gap-1 ">
-              <button className="bg-blue-500 mt-2 rounded-lg border-2 py-2 px-4">
+              {/* <button className="bg-blue-500 mt-2 rounded-lg border-2 py-2 px-4">
                 <FontAwesomeIcon icon={faPenSquare} className="mr-2" />
                 Update
-              </button>
+              </button> */}
 
               <button
                 onClick={() => {
@@ -189,7 +189,7 @@ function Logo() {
               className="bg-green-500 mt-2 rounded-lg border-2 py-2 px-4"
             >
               <FontAwesomeIcon icon={faPlus} className="mr-2" />
-              Add Image
+              Update Logo
             </button>
           </div>
         </div>
