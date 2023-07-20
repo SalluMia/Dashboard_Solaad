@@ -23,6 +23,8 @@ import AddContactForm from './pages/Form/AddContactForm';
 import Projects from './components/Projects';
 import PortfolioForm from './pages/Form/PortfolioForm';
 import Logo from './components/Logo';
+import EventUpdateForm from './pages/Form/EventUpdateForm';
+import PrivateRoutes from './pages/Authentication/PrivateRoutes';
 
 const Profile = lazy(() => import('./pages/Profile'));
 
@@ -42,226 +44,226 @@ function App() {
       <Routes>
         <Route path="/auth/signin" element={<SignIn />} />
         <Route path="/auth/signup" element={<SignUp />} />
+        <Route element={<PrivateRoutes />}>
+          <Route element={<DefaultLayout />}>
+            <Route index path="/" element={<Events />} />
 
-        <Route element={<DefaultLayout />}>
-          <Route index path="/" element={<Events />} />
+            {/* //////// routes for holiday and events/////////// */}
+            <Route
+              path="/Holidays&Events"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <Events />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/events"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <EventsForm />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/events/:id"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <EventUpdateForm />
+                </Suspense>
+              }
+            />
 
-          {/* //////// routes for holiday and events/////////// */}
-          <Route
-            path="/Holidays&Events"
-            element={
-              <Suspense fallback={<Loader />}>
-                <Events />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/events"
-            element={
-              <Suspense fallback={<Loader />}>
-                <EventsForm />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/events/:id"
-            element={
-              <Suspense fallback={<Loader />}>
-                <EventsForm />
-              </Suspense>
-            }
-          />
+            {/* routes for technologies */}
 
-          {/* routes for technologies */}
+            <Route path="/technologies" element={<Technologies />} />
 
-          <Route path="/technologies" element={<Technologies />} />
+            <Route
+              path="/technologyform"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <TechnologiesForm />
+                </Suspense>
+              }
+            />
 
-          <Route
-            path="/technologyform"
-            element={
-              <Suspense fallback={<Loader />}>
-                <TechnologiesForm />
-              </Suspense>
-            }
-          />
+            <Route
+              path="/technologyform/:id"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <TechnologiesForm />
+                </Suspense>
+              }
+            />
 
-          <Route
-            path="/technologyform/:id"
-            element={
-              <Suspense fallback={<Loader />}>
-                <TechnologiesForm />
-              </Suspense>
-            }
-          />
+            {/* routes for testimonials */}
 
-          {/* routes for testimonials */}
+            <Route
+              path="/testimonials"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <Testimonials />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/testimonialsform"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <TestimonialsForm />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/testimonialsform/:id"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <TestimonialsForm />
+                </Suspense>
+              }
+            />
 
-          <Route
-            path="/testimonials"
-            element={
-              <Suspense fallback={<Loader />}>
-                <Testimonials />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/testimonialsform"
-            element={
-              <Suspense fallback={<Loader />}>
-                <TestimonialsForm />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/testimonialsform/:id"
-            element={
-              <Suspense fallback={<Loader />}>
-                <TestimonialsForm />
-              </Suspense>
-            }
-          />
+            {/* routes for social links */}
+            <Route
+              path="/sociallinks"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <SocialLinks />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/sociallinksform"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <SocialLinksForm />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/sociallinksform/:id"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <SocialLinksForm />
+                </Suspense>
+              }
+            />
 
-          {/* routes for social links */}
-          <Route
-            path="/sociallinks"
-            element={
-              <Suspense fallback={<Loader />}>
-                <SocialLinks />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/sociallinksform"
-            element={
-              <Suspense fallback={<Loader />}>
-                <SocialLinksForm />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/sociallinksform/:id"
-            element={
-              <Suspense fallback={<Loader />}>
-                <SocialLinksForm />
-              </Suspense>
-            }
-          />
+            {/* routes for add contact */}
+            <Route
+              path="/addcontact"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <AddContact />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/addcontactform"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <AddContactForm />
+                </Suspense>
+              }
+            />
+            <Route
+              path={`/addcontactform/:id`}
+              element={
+                <Suspense fallback={<Loader />}>
+                  <AddContactForm />
+                </Suspense>
+              }
+            />
+            {/* ///////////// routes for services///////////////// */}
+            <Route
+              path="/Services"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <Services />
+                </Suspense>
+              }
+            />
 
-          {/* routes for add contact */}
-          <Route
-            path="/addcontact"
-            element={
-              <Suspense fallback={<Loader />}>
-                <AddContact />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/addcontactform"
-            element={
-              <Suspense fallback={<Loader />}>
-                <AddContactForm />
-              </Suspense>
-            }
-          />
-          <Route
-            path={`/addcontactform/:id`}
-            element={
-              <Suspense fallback={<Loader />}>
-                <AddContactForm />
-              </Suspense>
-            }
-          />
-          {/* ///////////// routes for services///////////////// */}
-          <Route
-            path="/Services"
-            element={
-              <Suspense fallback={<Loader />}>
-                <Services />
-              </Suspense>
-            }
-          />
+            <Route
+              path="/servicesform"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <ServicesForm />
+                </Suspense>
+              }
+            />
+            {/* ///////////////////// routes for stratigies ////////////////////// */}
+            <Route
+              path="/strategies"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <Strategies />
+                </Suspense>
+              }
+            />
 
-          <Route
-            path="/servicesform"
-            element={
-              <Suspense fallback={<Loader />}>
-                <ServicesForm />
-              </Suspense>
-            }
-          />
-          {/* ///////////////////// routes for stratigies ////////////////////// */}
-          <Route
-            path="/strategies"
-            element={
-              <Suspense fallback={<Loader />}>
-                <Strategies />
-              </Suspense>
-            }
-          />
+            <Route
+              path="/strategiesform"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <StrategiesForm />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/strategiesform/:id"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <StrategiesForm />
+                </Suspense>
+              }
+            />
+            {/* /////////////////////////// routes for projects //////////////////////////// */}
+            <Route
+              path="/projects"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <Projects />
+                </Suspense>
+              }
+            />
 
-          <Route
-            path="/strategiesform"
-            element={
-              <Suspense fallback={<Loader />}>
-                <StrategiesForm />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/strategiesform/:id"
-            element={
-              <Suspense fallback={<Loader />}>
-                <StrategiesForm />
-              </Suspense>
-            }
-          />
-          {/* /////////////////////////// routes for projects //////////////////////////// */}
-          <Route
-            path="/projects"
-            element={
-              <Suspense fallback={<Loader />}>
-                <Projects />
-              </Suspense>
-            }
-          />
+            <Route
+              path="/projectsform"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <PortfolioForm />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/projectsform/:id"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <PortfolioForm />
+                </Suspense>
+              }
+            />
 
-          <Route
-            path="/projectsform"
-            element={
-              <Suspense fallback={<Loader />}>
-                <PortfolioForm />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/projectsform/:id"
-            element={
-              <Suspense fallback={<Loader />}>
-                <PortfolioForm />
-              </Suspense>
-            }
-          />
+            <Route
+              path="/profile"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <Profile />
+                </Suspense>
+              }
+            />
 
-          <Route
-            path="/profile"
-            element={
-              <Suspense fallback={<Loader />}>
-                <Profile />
-              </Suspense>
-            }
-          />
+            <Route
+              path="/logo"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <Logo />
+                </Suspense>
+              }
+            />
 
-          <Route
-            path="/logo"
-            element={
-              <Suspense fallback={<Loader />}>
-                <Logo />
-              </Suspense>
-            }
-          />
-
-          {/*  <Route
+            {/*  <Route
             path="/calendar"
             element={
               <Suspense fallback={<Loader />}>
@@ -326,6 +328,7 @@ function App() {
               </Suspense>
             }
           /> */}
+          </Route>
         </Route>
       </Routes>
     </>

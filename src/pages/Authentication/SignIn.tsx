@@ -276,17 +276,19 @@
 
 // export default SignIn;
 
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import LogoDark from '../../images/logo/Soladd-Logo.png';
 import Logo from '../../images/logo/Soladd-Logo.png';
 import axios from 'axios';
 import { BASEURL } from '../../components/Api/Api_Url';
+import { Toaster, toast } from 'react-hot-toast';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -302,14 +304,28 @@ const SignIn = () => {
         password: password,
       });
 
-      console.log(response);
+      if (response.status == 200) {
+        localStorage.setItem('login', JSON.stringify(response?.data));
+        navigate('/');
+        toast.success('Admin login Successfully');
+      }
+
+      console.log(response.data.token);
     } catch (error) {
       console.error(error);
     }
   };
 
+  useEffect(() => {
+    const loginData = JSON.parse(localStorage.getItem('login'));
+    if (loginData) {
+      navigate('/');
+    }
+  }, []);
+
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="flex flex-wrap items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
