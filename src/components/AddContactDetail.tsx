@@ -14,7 +14,7 @@ const AddContactDetail = () => {
     try {
       const response = await axios.get(`${BASEURL}/api/auth/contact`);
       console.log(response.data);
-      setConatctData(response.data);
+      setConatctData(response.data.reverse());
     } catch (error) {
       console.log(error);
     }

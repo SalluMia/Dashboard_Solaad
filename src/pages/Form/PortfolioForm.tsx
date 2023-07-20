@@ -145,7 +145,12 @@ function PortfolioForm() {
                     }`}
                   />
                   {titleError && (
-                    <p className="text-red-500 text-xs">{titleError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {titleError}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -165,7 +170,12 @@ function PortfolioForm() {
                     }`}
                   />
                   {categoryError && (
-                    <p className="text-red-500 text-xs">{categoryError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {categoryError}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -184,7 +194,12 @@ function PortfolioForm() {
                     }`}
                   />
                   {categoryError && (
-                    <p className="text-red-500 text-xs">{categoryError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {categoryError}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -204,7 +219,12 @@ function PortfolioForm() {
                     }`}
                   />
                   {categoryError && (
-                    <p className="text-red-500 text-xs">{categoryError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {categoryError}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -224,7 +244,12 @@ function PortfolioForm() {
                     }`}
                   />
                   {categoryError && (
-                    <p className="text-red-500 text-xs">{categoryError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {categoryError}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -244,7 +269,12 @@ function PortfolioForm() {
                     }`}
                   />
                   {categoryError && (
-                    <p className="text-red-500 text-xs">{categoryError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {categoryError}
+                    </p>
                   )}
                 </div>
 

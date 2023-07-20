@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useRef, useEffect } from 'react';
 import { BASEURL } from '../../components/Api/Api_Url';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
 
 const SocialLinksUpdateForm = () => {
@@ -13,6 +13,8 @@ const SocialLinksUpdateForm = () => {
 
   const { id } = useParams();
   console.log('Id', id);
+
+  const navigate = useNavigate();
 
   ///////////////////////////////////////////// code for image drag drop////////////////////////////////
   const [dragActive, setDragActive] = useState(false);
@@ -108,6 +110,7 @@ const SocialLinksUpdateForm = () => {
           setUrl('');
           setIsFileSelected(false);
           toast.success('Successfully Submitted!');
+          navigate('/sociallinks');
         }
       } catch (error) {
         console.log(error);
@@ -156,7 +159,12 @@ const SocialLinksUpdateForm = () => {
                     }}
                   />
                   {platformError && (
-                    <p className="text-red-500 text-xs">{platformError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {platformError}
+                    </p>
                   )}
                 </div>
 
@@ -177,7 +185,12 @@ const SocialLinksUpdateForm = () => {
                     }}
                   />
                   {urlError && (
-                    <p className="text-red-500 text-xs">{urlError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {urlError}
+                    </p>
                   )}
                 </div>
 

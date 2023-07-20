@@ -16,7 +16,7 @@ export default function Projects() {
   const fetchData = async () => {
     try {
       const response = await axios.get(`${BASEURL}/api/auth/portfolio`);
-      setProjData(response.data);
+      setProjData(response.data.reverse());
       console.log(response.data);
     } catch (error) {
       console.log(error);

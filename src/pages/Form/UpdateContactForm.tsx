@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { BASEURL } from '../../components/Api/Api_Url';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { Toaster, toast } from 'react-hot-toast';
 
@@ -15,6 +15,8 @@ const UpdateContactForm = () => {
   const [addressError, setAddressError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [phoneError, setPhoneError] = useState('');
+
+  const navigate = useNavigate();
 
   const validateForm = () => {
     let isValid = true;
@@ -55,6 +57,7 @@ const UpdateContactForm = () => {
           setAddress('');
           setPhone('');
           toast.success('Form submitted successfully');
+          navigate('/addcontact');
         }
       } catch (error) {
         console.log(error);
@@ -106,7 +109,12 @@ const UpdateContactForm = () => {
                     }`}
                   />
                   {addressError && (
-                    <p className="text-red-500 text-xs">{addressError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {addressError}
+                    </p>
                   )}
                 </div>
 
@@ -129,7 +137,12 @@ const UpdateContactForm = () => {
                     }`}
                   />
                   {emailError && (
-                    <p className="text-red-500 text-xs">{emailError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {emailError}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -149,7 +162,12 @@ const UpdateContactForm = () => {
                     }`}
                   />
                   {phoneError && (
-                    <p className="text-red-500 text-xs">{phoneError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {phoneError}
+                    </p>
                   )}
                 </div>
 

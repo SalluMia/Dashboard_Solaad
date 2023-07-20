@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState, useRef } from 'react';
 import { BASEURL } from '../../components/Api/Api_Url';
 import { Toaster, toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 export default function StrategiesForm() {
   const [title, setTitle] = useState('');
@@ -12,6 +13,8 @@ export default function StrategiesForm() {
   const [dragActive, setDragActive] = useState(false);
   const [isFileSelected, setIsFileSelected] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const navigate = useNavigate();
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
@@ -78,6 +81,7 @@ export default function StrategiesForm() {
         setIsFileSelected(false);
         setError('');
         toast.success('Form submitted successfully');
+        navigate('/strategies');
       }
     } catch (error) {
       console.log(error);
@@ -170,7 +174,11 @@ export default function StrategiesForm() {
 
                 {/* file uploader end  */}
                 <div className="relative">
-                  {error && <p className="text-red-500 mb-3">{error}</p>}
+                  {error && (
+                    <p className="text-red-500 mb-3" style={{ color: 'red' }}>
+                      {error}
+                    </p>
+                  )}
                   <button
                     type="submit"
                     onClick={handleSubmits}

@@ -173,7 +173,7 @@ function Services() {
     try {
       const response = await axios.get(`${BASEURL}/api/auth/services`);
       console.log(response.data);
-      setData(response.data);
+      setData(response.data.reverse());
     } catch (error) {
       console.log(error);
     }

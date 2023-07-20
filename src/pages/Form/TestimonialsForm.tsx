@@ -4,6 +4,7 @@ import axios from 'axios';
 import { BASEURL } from '../../components/Api/Api_Url';
 // import { useParams } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function TestimonialsForm() {
   const [name, setName] = useState('');
@@ -17,6 +18,8 @@ function TestimonialsForm() {
 
   // const { id } = useParams();
   // console.log(id);
+
+  const navigate = useNavigate();
 
   ///////////////////////////////////////////// code for image drag drop////////////////////////////////
   const [dragActive, setDragActive] = useState(false);
@@ -109,13 +112,8 @@ function TestimonialsForm() {
           setDesignation('');
           setIsFileSelected(false);
           toast.success('Form submitted successfully');
+          navigate('/testimonials');
         }
-
-        setName('');
-        setFeedback('');
-        setDesignation('');
-        setIsFileSelected(false);
-        console.log(response);
       } catch (error) {
         console.log(error);
       }
@@ -147,7 +145,12 @@ function TestimonialsForm() {
                     }`}
                   />
                   {nameError && (
-                    <p className="text-red-500 text-xs">{nameError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {nameError}
+                    </p>
                   )}
                 </div>
 
@@ -167,7 +170,12 @@ function TestimonialsForm() {
                     }}
                   />
                   {feedbackError && (
-                    <p className="text-red-500 text-xs">{feedbackError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {feedbackError}
+                    </p>
                   )}
                 </div>
 
@@ -187,7 +195,12 @@ function TestimonialsForm() {
                     }}
                   />
                   {designationError && (
-                    <p className="text-red-500 text-xs">{designationError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {designationError}
+                    </p>
                   )}
                 </div>
                 {/* file uploader start  */}

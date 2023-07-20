@@ -13,7 +13,7 @@ const SocialLinksDetail = () => {
     try {
       const response = await axios.get(`${BASEURL}/api/auth/social-media`);
       console.log(response);
-      setSocialData(response.data);
+      setSocialData(response.data.reverse());
     } catch (error) {}
   };
 

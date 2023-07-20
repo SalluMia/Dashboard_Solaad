@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { BASEURL } from '../../components/Api/Api_Url';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
 
 const TechnologiesForm = () => {
@@ -10,6 +10,8 @@ const TechnologiesForm = () => {
 
   const { id } = useParams();
   console.log(id);
+
+  const navigate = useNavigate();
   ////////////////////////////////// code for image drag drop/////////////////////////////////////
   const [dragActive, setDragActive] = useState(false);
   const [isFileSelected, setIsFileSelected] = useState(false);
@@ -80,26 +82,13 @@ const TechnologiesForm = () => {
           setTitle('');
           setIsFileSelected(false);
           toast.success('Successfully Submitted!');
+          navigate('/technologies');
         }
       } catch (error) {
         alert(error);
       }
     }
   };
-
-  const getData = async () => {
-    try {
-      // const response = await axios.post(`${BASEURL}/api/auth/technology`, id);
-      // console.log(response);
-      setTitle(''), setIsFileSelected(false);
-    } catch (error) {
-      alert(error);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   return (
     <div>
@@ -126,7 +115,12 @@ const TechnologiesForm = () => {
                     }}
                   />
                   {titleError && (
-                    <p className="text-red-500 text-xs">{titleError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {titleError}
+                    </p>
                   )}
                 </div>
 

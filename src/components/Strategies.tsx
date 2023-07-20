@@ -18,7 +18,7 @@ export default function Strategies() {
       const response = await axios.get(
         `${BASEURL}/api/auth/strategic-executions`
       );
-      setData(response.data);
+      setData(response.data.reverse());
       console.log(response.data);
     } catch (error) {
       console.log(error);

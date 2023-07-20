@@ -11,7 +11,7 @@ const TechnologiesDetail = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(`${BASEURL}/api/auth/technologies`);
-      setTechData(response.data);
+      setTechData(response.data.reverse());
       console.log(response.data);
     } catch (error) {
       console.log(error);

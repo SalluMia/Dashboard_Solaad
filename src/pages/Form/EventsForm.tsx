@@ -154,7 +154,12 @@ export default function EventsForm() {
                     }`}
                   />
                   {titleError && (
-                    <p className="text-red-500 text-xs">{titleError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {titleError}
+                    </p>
                   )}
                 </div>
 
@@ -175,7 +180,12 @@ export default function EventsForm() {
                     }`}
                   />
                   {descriptionError && (
-                    <p className="text-red-500 text-xs">{descriptionError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {descriptionError}
+                    </p>
                   )}
                 </div>
 

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './uploader.css';
 import axios from 'axios';
 import { BASEURL } from '../../components/Api/Api_Url';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
 
 function TestimonialUpdateForm() {
@@ -17,6 +17,7 @@ function TestimonialUpdateForm() {
   const { id } = useParams();
   console.log(id);
 
+  const navigate = useNavigate();
   ///////////////////////////////////////////// code for image drag drop////////////////////////////////
   const [dragActive, setDragActive] = useState(false);
   const [isFileSelected, setIsFileSelected] = useState(false);
@@ -121,6 +122,7 @@ function TestimonialUpdateForm() {
           setDesignation('');
           setIsFileSelected(false);
           toast.success('Form submitted successfully');
+          navigate('/testimonials');
         }
 
         setName('');
@@ -178,7 +180,12 @@ function TestimonialUpdateForm() {
                     }`}
                   />
                   {nameError && (
-                    <p className="text-red-500 text-xs">{nameError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {nameError}
+                    </p>
                   )}
                 </div>
 
@@ -198,7 +205,12 @@ function TestimonialUpdateForm() {
                     }}
                   />
                   {feedbackError && (
-                    <p className="text-red-500 text-xs">{feedbackError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {feedbackError}
+                    </p>
                   )}
                 </div>
 
@@ -218,7 +230,12 @@ function TestimonialUpdateForm() {
                     }}
                   />
                   {designationError && (
-                    <p className="text-red-500 text-xs">{designationError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {designationError}
+                    </p>
                   )}
                 </div>
                 {/* file uploader start  */}

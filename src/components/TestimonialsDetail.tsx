@@ -14,7 +14,7 @@ const TestimonialsDetail = () => {
     try {
       const response = await axios.get(`${BASEURL}/api/auth/testimonials`);
       console.log(response.data);
-      setTestidata(response.data);
+      setTestidata(response.data.reverse());
     } catch (error) {
       console.log(error);
     }

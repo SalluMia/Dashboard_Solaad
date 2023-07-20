@@ -90,14 +90,14 @@ function PortfolioUpdateForm() {
     let isValid = true;
 
     if (!title) {
-      setTitleError('Please enter the project title.');
+      setTitleError('Please enter the Field.');
       isValid = false;
     } else {
       setTitleError('');
     }
 
     if (!category) {
-      setCategoryError('Please enter the project category.');
+      setCategoryError('Please enter the Field');
       isValid = false;
     } else {
       setCategoryError('');
@@ -180,7 +180,12 @@ function PortfolioUpdateForm() {
                     }`}
                   />
                   {titleError && (
-                    <p className="text-red-500 text-xs">{titleError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {titleError}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -200,7 +205,12 @@ function PortfolioUpdateForm() {
                     }`}
                   />
                   {categoryError && (
-                    <p className="text-red-500 text-xs">{categoryError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {categoryError}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -219,7 +229,12 @@ function PortfolioUpdateForm() {
                     }`}
                   />
                   {categoryError && (
-                    <p className="text-red-500 text-xs">{categoryError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {categoryError}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -239,7 +254,12 @@ function PortfolioUpdateForm() {
                     }`}
                   />
                   {categoryError && (
-                    <p className="text-red-500 text-xs">{categoryError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {categoryError}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -259,7 +279,12 @@ function PortfolioUpdateForm() {
                     }`}
                   />
                   {categoryError && (
-                    <p className="text-red-500 text-xs">{categoryError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {categoryError}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -279,7 +304,12 @@ function PortfolioUpdateForm() {
                     }`}
                   />
                   {categoryError && (
-                    <p className="text-red-500 text-xs">{categoryError}</p>
+                    <p
+                      className="text-red-500 text-xs"
+                      style={{ color: 'red' }}
+                    >
+                      {categoryError}
+                    </p>
                   )}
                 </div>
 
