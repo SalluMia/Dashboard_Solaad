@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import './uploader.css';
 import axios from 'axios';
 import { BASEURL } from '../../components/Api/Api_Url';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
 
 function TestimonialsForm() {
@@ -15,8 +15,8 @@ function TestimonialsForm() {
   const [designationError, setDesignationError] = useState('');
   const [isFileSelected, setIsFileSelected] = useState(false);
 
-  const { id } = useParams();
-  console.log(id);
+  // const { id } = useParams();
+  // console.log(id);
 
   ///////////////////////////////////////////// code for image drag drop////////////////////////////////
   const [dragActive, setDragActive] = useState(false);
@@ -121,33 +121,6 @@ function TestimonialsForm() {
       }
     }
   };
-  // const getData = async () => {
-  //   try {
-  //     const response = await axios.post(
-  //       `${BASEURL}/api/auth/testimonial`,
-  //       formData
-  //     );
-
-  //     if (response.status == 200) {
-  //       setName(''),
-  //         setFeedback(''),
-  //         setDesignation(''),
-  //         setIsFileSelected(false);
-  //       alert('Form submitted successfully');
-  //     }
-
-  //     setName(''),
-  //       setFeedback(''),
-  //       setDesignation(''),
-  //       setIsFileSelected(false);
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   getData();
-  // }, []);
 
   return (
     <>

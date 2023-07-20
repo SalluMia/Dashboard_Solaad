@@ -25,6 +25,13 @@ import PortfolioForm from './pages/Form/PortfolioForm';
 import Logo from './components/Logo';
 import EventUpdateForm from './pages/Form/EventUpdateForm';
 import PrivateRoutes from './pages/Authentication/PrivateRoutes';
+import TechnologyUpdateForm from './pages/Form/TechnologyUpdateForm';
+import PortfolioUpdateForm from './pages/Form/PortfolioUpdateForm';
+import TestimonialUpdateForm from './pages/Form/TestimonialUpdateForm';
+import SocialLinksUpdateForm from './pages/Form/SocialLinksUpdateForm';
+import UpdateContactForm from './pages/Form/UpdateContactForm';
+import StrategiesUpdateForm from './pages/Form/StrategiesUpdateForm';
+import ServicesUpdateForm from './pages/Form/ServicesUpdateForm';
 
 const Profile = lazy(() => import('./pages/Profile'));
 
@@ -91,7 +98,7 @@ function App() {
               path="/technologyform/:id"
               element={
                 <Suspense fallback={<Loader />}>
-                  <TechnologiesForm />
+                  <TechnologyUpdateForm />
                 </Suspense>
               }
             />
@@ -118,7 +125,7 @@ function App() {
               path="/testimonialsform/:id"
               element={
                 <Suspense fallback={<Loader />}>
-                  <TestimonialsForm />
+                  <TestimonialUpdateForm />
                 </Suspense>
               }
             />
@@ -144,7 +151,7 @@ function App() {
               path="/sociallinksform/:id"
               element={
                 <Suspense fallback={<Loader />}>
-                  <SocialLinksForm />
+                  <SocialLinksUpdateForm />
                 </Suspense>
               }
             />
@@ -170,7 +177,7 @@ function App() {
               path={`/addcontactform/:id`}
               element={
                 <Suspense fallback={<Loader />}>
-                  <AddContactForm />
+                  <UpdateContactForm />
                 </Suspense>
               }
             />
@@ -189,6 +196,14 @@ function App() {
               element={
                 <Suspense fallback={<Loader />}>
                   <ServicesForm />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/servicesform/:id"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <ServicesUpdateForm />
                 </Suspense>
               }
             />
@@ -214,7 +229,7 @@ function App() {
               path="/strategiesform/:id"
               element={
                 <Suspense fallback={<Loader />}>
-                  <StrategiesForm />
+                  <StrategiesUpdateForm />
                 </Suspense>
               }
             />
@@ -240,7 +255,7 @@ function App() {
               path="/projectsform/:id"
               element={
                 <Suspense fallback={<Loader />}>
-                  <PortfolioForm />
+                  <PortfolioUpdateForm />
                 </Suspense>
               }
             />

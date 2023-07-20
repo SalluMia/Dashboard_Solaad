@@ -1,24 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useRef, useEffect } from 'react';
 import './uploader.css';
+import axios from 'axios';
 import { BASEURL } from '../../components/Api/Api_Url';
 import { useParams } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
 
-export default function EventUpdateForm() {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+function TestimonialUpdateForm() {
+  const [name, setName] = useState('');
+  const [feedback, setFeedback] = useState('');
+  const [designation, setDesignation] = useState('');
 
+  const [nameError, setNameError] = useState('');
+  const [feedbackError, setFeedbackError] = useState('');
+  const [designationError, setDesignationError] = useState('');
+
+  const { id } = useParams();
+  console.log(id);
+
+  ///////////////////////////////////////////// code for image drag drop////////////////////////////////
   const [dragActive, setDragActive] = useState(false);
   const [isFileSelected, setIsFileSelected] = useState(false);
   const [selectedImageSrc, setSelectedImageSrc] = useState('');
-
-  const [titleError, setTitleError] = useState('');
-  const [descriptionError, setDescriptionError] = useState('');
-
-  const { id } = useParams();
-  ///////////////////////////// Code for drag drop image/////////////////////////////
-
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const handleDrag = (e: React.DragEvent) => {
@@ -63,38 +65,43 @@ export default function EventUpdateForm() {
   const onButtonClick = () => {
     inputRef.current?.click();
   };
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+  ////////////////////////////////////////////////////
   const formData = new FormData();
 
-  formData.append('event_title', title);
-  formData.append('description', description);
-  if (selectedImageSrc) {
+  formData.append('customerName', name);
+  formData.append('customerFeedback', feedback);
+  formData.append('customerDesignation', designation);
+
+  if (isFileSelected) {
     const fileInput = inputRef.current;
     if (fileInput && fileInput.files && fileInput.files.length > 0) {
       console.log(fileInput.files[0]);
 
-      formData.append('event_Picture', fileInput.files[0]);
+      formData.append('customerImage', fileInput.files[0]);
     }
   }
-
-  // ... (code for handling file selection)
 
   const validateForm = () => {
     let isValid = true;
 
-    if (!title) {
-      setTitleError('Please enter the event title.');
+    if (!name) {
+      setNameError('Please enter the client name.');
       isValid = false;
     } else {
-      setTitleError('');
+      setNameError('');
     }
 
-    if (!description) {
-      setDescriptionError('Please enter the event description.');
+    if (!feedback) {
+      setFeedbackError('Please enter the feedback.');
       isValid = false;
     } else {
-      setDescriptionError('');
+      setFeedbackError('');
+    }
+    if (!designation) {
+      setDesignationError('Please enter the Designation.');
+      isValid = false;
+    } else {
+      setDesignationError('');
     }
 
     return isValid;
@@ -103,107 +110,118 @@ export default function EventUpdateForm() {
   const handleSubmits = async () => {
     if (validateForm()) {
       try {
-        const formData = new FormData();
-        formData.append('event_title', title);
-        formData.append('description', description);
-        formData.append(' holidayEventId', id);
-        console.log(formData);
-        if (selectedImageSrc) {
-          const fileInput = inputRef.current;
-          if (fileInput && fileInput.files && fileInput.files.length > 0) {
-            formData.append('event_Picture', fileInput.files[0]);
-          }
-        }
-
         const response = await axios.put(
-          `${BASEURL}/api/auth/holidayUpdate/${id}`, // Assuming you have an API endpoint to update the event using its ID
+          `${BASEURL}/api/auth/testimonialupdate/${id}`,
           formData
         );
+
         if (response.status === 200) {
-          setTitle('');
-          setDescription('');
+          setName('');
+          setFeedback('');
+          setDesignation('');
           setIsFileSelected(false);
-          toast.success('Successfully Updated!');
+          toast.success('Form submitted successfully');
         }
-        console.log(response); // Handle the response data
+
+        setName('');
+        setFeedback('');
+        setDesignation('');
+        setIsFileSelected(false);
+        console.log(response);
       } catch (error) {
-        console.error(error);
-        toast.error('Failed to update the event. Please try again.');
+        console.log(error);
       }
     }
   };
 
+  ////////////////getting data ////////////
   const getData = async () => {
     try {
       const response = await axios.post(`${BASEURL}/api/auth/updation/${id}`);
       console.log(response.data);
-      setTitle(response.data.content.event_title),
-        setDescription(response.data.content.description),
-        setSelectedImageSrc(response.data.content.event_Picture);
-      console.log(response); // Handle the response data
+
+      setName(response.data.testimonials.customerName),
+        setFeedback(response.data.testimonials.customerFeedback),
+        setDesignation(response.data.testimonials.customerDesignation),
+        // setIsFileSelected(false);
+        setSelectedImageSrc(response.data.testimonials.customerImage);
     } catch (error) {
-      console.error(error); // Handle the error
+      console.log(error);
     }
   };
-
   useEffect(() => {
     getData();
   }, []);
 
   return (
-    <div>
+    <>
       <Toaster position="top-center" reverseOrder={false} />
-
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-1">
         <div className="flex flex-col gap-9">
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
               <div className="flex flex-col gap-5.5 p-6.5">
                 <div>
-                  <label className="mb-3 block text-sm text-black dark:text-white">
-                    <b>Event Title</b>
+                  <label className="mb-3 block text-sm text-sm font-medium text-black dark:text-white">
+                    Client Name
                   </label>
                   <input
-                    name="event_title"
-                    value={title}
+                    name="customerName"
+                    value={name}
                     onChange={(e) => {
-                      setTitle(e.target.value);
+                      setName(e.target.value);
                     }}
                     type="text"
-                    placeholder="place event's title here"
-                    required
-                    className={`font-small w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
-                      titleError ? 'border-red-500' : ''
+                    placeholder="Mr. John Doe.."
+                    className={`w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
+                      nameError ? 'border-red-500' : ''
                     }`}
                   />
-                  {titleError && (
-                    <p className="text-red-500 text-xs">{titleError}</p>
+                  {nameError && (
+                    <p className="text-red-500 text-xs">{nameError}</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="mb-3 block text-sm text-black dark:text-white">
-                    <b>Content</b>
+                  <label className="mb-3 block text-sm font-medium text-black dark:text-white">
+                    Feedback
                   </label>
                   <textarea
-                    name="description"
-                    value={description}
-                    onChange={(e) => {
-                      setDescription(e.target.value);
-                    }}
-                    placeholder="place brief detail of event's here"
-                    required
-                    className={`font-small w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
-                      descriptionError ? 'border-red-500' : ''
+                    value={feedback}
+                    placeholder="best feedback !!"
+                    className={`w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
+                      feedbackError ? 'border-red-500' : ''
                     }`}
+                    name="customerFeedback"
+                    onChange={(e) => {
+                      setFeedback(e.target.value);
+                    }}
                   />
-                  {descriptionError && (
-                    <p className="text-red-500 text-xs">{descriptionError}</p>
+                  {feedbackError && (
+                    <p className="text-red-500 text-xs">{feedbackError}</p>
                   )}
                 </div>
 
+                <div>
+                  <label className="mb-3 block text-sm font-medium text-black dark:text-white">
+                    Designation
+                  </label>
+                  <input
+                    placeholder="client designation"
+                    className={`w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
+                      designationError ? 'border-red-500' : ''
+                    }`}
+                    name="customerDesignation"
+                    value={designation}
+                    onChange={(e) => {
+                      setDesignation(e.target.value);
+                    }}
+                  />
+                  {designationError && (
+                    <p className="text-red-500 text-xs">{designationError}</p>
+                  )}
+                </div>
                 {/* file uploader start  */}
-
                 <div className="flex">
                   <form
                     id="form-file-upload"
@@ -256,15 +274,14 @@ export default function EventUpdateForm() {
                 </div>
 
                 {/* file uploader end  */}
-
-                <div className="">
+                <div className="relative">
                   <button
                     type="submit"
                     onClick={handleSubmits}
                     className="custom-input-date custom-input-date-1 w-full rounded border-[1.5px] border-stroke bg-primary py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     style={{ color: 'white', fontWeight: 'bold' }}
                   >
-                    Update Event +
+                    Update Testimonials
                   </button>
                 </div>
               </div>
@@ -272,6 +289,8 @@ export default function EventUpdateForm() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
+
+export default TestimonialUpdateForm;

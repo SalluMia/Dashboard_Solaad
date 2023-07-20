@@ -61,6 +61,9 @@ export default function Projects() {
                   <b>Project Description</b>
                 </th>
                 <th className="min-w-[120px] py-4 px-4 text-sm  font-medium  text-black dark:text-white">
+                  <b>Category</b>
+                </th>
+                <th className="min-w-[120px] py-4 px-4 text-sm  font-medium  text-black dark:text-white">
                   <b>Image</b>
                 </th>
 

@@ -1,24 +1,20 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './uploader.css';
+import React, { useState, useRef, useEffect } from 'react';
 import { BASEURL } from '../../components/Api/Api_Url';
-import { useParams } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
+import { useParams } from 'react-router-dom';
 
-export default function EventUpdateForm() {
+export default function StrategiesUpdateForm() {
+  const { id } = useParams();
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [error, setError] = useState('');
 
+  ///////////////////////////////////////////// code for image drag drop////////////////////////////////
   const [dragActive, setDragActive] = useState(false);
   const [isFileSelected, setIsFileSelected] = useState(false);
   const [selectedImageSrc, setSelectedImageSrc] = useState('');
-
-  const [titleError, setTitleError] = useState('');
-  const [descriptionError, setDescriptionError] = useState('');
-
-  const { id } = useParams();
-  ///////////////////////////// Code for drag drop image/////////////////////////////
-
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const handleDrag = (e: React.DragEvent) => {
@@ -63,73 +59,42 @@ export default function EventUpdateForm() {
   const onButtonClick = () => {
     inputRef.current?.click();
   };
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+  ////////////////////////////////////////////////////
   const formData = new FormData();
 
-  formData.append('event_title', title);
-  formData.append('description', description);
-  if (selectedImageSrc) {
+  formData.append('strategic_title', title);
+  formData.append('strategic_description', description);
+  if (isFileSelected) {
     const fileInput = inputRef.current;
     if (fileInput && fileInput.files && fileInput.files.length > 0) {
       console.log(fileInput.files[0]);
 
-      formData.append('event_Picture', fileInput.files[0]);
+      formData.append('stratImage', fileInput.files[0]);
     }
   }
 
-  // ... (code for handling file selection)
-
-  const validateForm = () => {
-    let isValid = true;
-
-    if (!title) {
-      setTitleError('Please enter the event title.');
-      isValid = false;
-    } else {
-      setTitleError('');
-    }
-
-    if (!description) {
-      setDescriptionError('Please enter the event description.');
-      isValid = false;
-    } else {
-      setDescriptionError('');
-    }
-
-    return isValid;
-  };
-
   const handleSubmits = async () => {
-    if (validateForm()) {
-      try {
-        const formData = new FormData();
-        formData.append('event_title', title);
-        formData.append('description', description);
-        formData.append(' holidayEventId', id);
-        console.log(formData);
-        if (selectedImageSrc) {
-          const fileInput = inputRef.current;
-          if (fileInput && fileInput.files && fileInput.files.length > 0) {
-            formData.append('event_Picture', fileInput.files[0]);
-          }
-        }
+    if (!title || !description) {
+      setError('Please fill in all the required fields.');
+      return;
+    }
 
-        const response = await axios.put(
-          `${BASEURL}/api/auth/holidayUpdate/${id}`, // Assuming you have an API endpoint to update the event using its ID
-          formData
-        );
-        if (response.status === 200) {
-          setTitle('');
-          setDescription('');
-          setIsFileSelected(false);
-          toast.success('Successfully Updated!');
-        }
-        console.log(response); // Handle the response data
-      } catch (error) {
-        console.error(error);
-        toast.error('Failed to update the event. Please try again.');
+    try {
+      const response = await axios.put(
+        `${BASEURL}/api/auth/strategic-executions/${id}`,
+        formData
+      );
+      console.log(response);
+      if (response.status === 200) {
+        setTitle('');
+        setDescription('');
+        setIsFileSelected(false);
+        setSelectedImageSrc('');
+        setError('');
+        toast.success('Form submitted successfully');
       }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -137,15 +102,14 @@ export default function EventUpdateForm() {
     try {
       const response = await axios.post(`${BASEURL}/api/auth/updation/${id}`);
       console.log(response.data);
-      setTitle(response.data.content.event_title),
-        setDescription(response.data.content.description),
-        setSelectedImageSrc(response.data.content.event_Picture);
-      console.log(response); // Handle the response data
+      setTitle(response.data.strategicExecution.strategic_title);
+      setDescription(response.data.strategicExecution.strategic_description);
+
+      setSelectedImageSrc(response.data.strategicExecution.stratImage);
     } catch (error) {
-      console.error(error); // Handle the error
+      console.log(error);
     }
   };
-
   useEffect(() => {
     getData();
   }, []);
@@ -153,57 +117,43 @@ export default function EventUpdateForm() {
   return (
     <div>
       <Toaster position="top-center" reverseOrder={false} />
-
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-1">
         <div className="flex flex-col gap-9">
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
               <div className="flex flex-col gap-5.5 p-6.5">
                 <div>
-                  <label className="mb-3 block text-sm text-black dark:text-white">
-                    <b>Event Title</b>
+                  <label className="mb-3 block text-sm  font-medium text-black dark:text-white">
+                    Strategy Title
                   </label>
                   <input
-                    name="event_title"
+                    name="strategic_title"
                     value={title}
                     onChange={(e) => {
                       setTitle(e.target.value);
                     }}
                     type="text"
-                    placeholder="place event's title here"
-                    required
-                    className={`font-small w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
-                      titleError ? 'border-red-500' : ''
-                    }`}
+                    placeholder="set strategy title for your service"
+                    className="w-full rounded-lg border-[1.5px]  border-stroke bg-transparent py-3 px-5 text-sm font-medium font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                   />
-                  {titleError && (
-                    <p className="text-red-500 text-xs">{titleError}</p>
-                  )}
                 </div>
 
                 <div>
-                  <label className="mb-3 block text-sm text-black dark:text-white">
-                    <b>Content</b>
+                  <label className="mb-3 block text-sm  font-medium text-black dark:text-white">
+                    Strategy Plan Detail
                   </label>
                   <textarea
-                    name="description"
+                    name="strategic_description"
                     value={description}
                     onChange={(e) => {
                       setDescription(e.target.value);
                     }}
-                    placeholder="place brief detail of event's here"
-                    required
-                    className={`font-small w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary ${
-                      descriptionError ? 'border-red-500' : ''
-                    }`}
+                    placeholder="Set strategy execution plan detail..."
+                    className="w-full rounded-lg border-[1.5px]  border-stroke bg-transparent py-3 px-5 text-sm font-medium font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                   />
-                  {descriptionError && (
-                    <p className="text-red-500 text-xs">{descriptionError}</p>
-                  )}
                 </div>
 
                 {/* file uploader start  */}
-
                 <div className="flex">
                   <form
                     id="form-file-upload"
@@ -256,15 +206,15 @@ export default function EventUpdateForm() {
                 </div>
 
                 {/* file uploader end  */}
-
-                <div className="">
+                <div className="relative">
+                  {error && <p className="text-red-500 mb-3">{error}</p>}
                   <button
                     type="submit"
                     onClick={handleSubmits}
                     className="custom-input-date custom-input-date-1 w-full rounded border-[1.5px] border-stroke bg-primary py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     style={{ color: 'white', fontWeight: 'bold' }}
                   >
-                    Update Event +
+                    Update Strategy Plan +
                   </button>
                 </div>
               </div>

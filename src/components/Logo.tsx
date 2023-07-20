@@ -8,9 +8,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { BASEURL } from './Api/Api_Url';
+import { useNavigate } from 'react-router-dom';
 
 function Logo() {
+  const [image, setImage] = useState('');
   const [updateImage, setUpdateImage] = useState(false);
+
+  const navigate = useNavigate();
 
   ///////////////////////////////////////////// drag drop image /////////////////////////////////////////////////
   const [dragActive, setDragActive] = useState(false);
@@ -77,7 +81,6 @@ function Logo() {
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   ///////////////////////////////////////  display logo ////////////////////////////////
-  const [image, setImage] = useState('');
 
   const fetchData = async () => {
     try {
@@ -95,11 +98,14 @@ function Logo() {
 
   const handleDelete = async (id: any) => {
     try {
-      await axios.delete(`${BASEURL}/api/auth/logo/${id}`);
+      const response = await axios.delete(`${BASEURL}/api/auth/logo/${id}`);
       setImage((prevData) =>
         prevData?.filter((image: any) => image._id !== id)
       );
-      alert('Data deleted');
+      if (response.status == 200) {
+        alert('Data deleted');
+        navigate('/logo');
+      }
     } catch (error) {
       console.log(error);
     }

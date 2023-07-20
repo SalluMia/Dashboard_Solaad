@@ -260,7 +260,7 @@ function Services() {
                         >
                           <FontAwesomeIcon icon={faTrashAlt} />
                         </button>
-                        <Link to="/servicesform">
+                        <Link to={`/servicesform/${_id}`}>
                           <button
                             className="hover:text-primary"
                             style={{ color: '#40916c', fontSize: '16px' }}
