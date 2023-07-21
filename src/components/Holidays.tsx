@@ -13,7 +13,7 @@ export default function Holidays() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`${BASEURL}/api/auth/holiday-event`);
-        setEventData(response.data);
+        setEventData(response.data.reverse());
         console.log(response.data, 'data fetched');
       } catch (error) {
         console.log(error);

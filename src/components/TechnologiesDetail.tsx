@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { BASEURL } from './Api/Api_Url';
 import axios from 'axios';
+import { Toaster, toast } from 'react-hot-toast';
 
 const TechnologiesDetail = () => {
   const [techData, setTechData] = useState([]);
@@ -25,6 +26,7 @@ const TechnologiesDetail = () => {
       await axios.delete(`${BASEURL}/api/auth/technology/${id}`);
       setTechData((prevData) => prevData.filter((item) => item._id !== id));
       alert('Data deleted');
+      toast.success('Data Deleted');
     } catch (error) {
       console.log(error);
     }
@@ -32,6 +34,7 @@ const TechnologiesDetail = () => {
 
   return (
     <>
+      <Toaster position="top-center" />
       <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
         <div className="max-w-full overflow-x-auto">
           <table className="w-full table-auto">
@@ -66,8 +69,8 @@ const TechnologiesDetail = () => {
                       <p className="inline-flex py-1 px-3 text-sm text-sm font-medium text-success">
                         <img
                           className="my-5 h-20 w-40 object-cover"
-                          // src={`${BASEURL}/uploads/${image}`}
-                          src={image}
+                          src={`${BASEURL}/uploads/${image}`}
+                          // src={image}
                           alt="Technology"
                         />
                       </p>
