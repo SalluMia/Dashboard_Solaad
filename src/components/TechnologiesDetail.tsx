@@ -25,7 +25,7 @@ const TechnologiesDetail = () => {
     try {
       await axios.delete(`${BASEURL}/api/auth/technology/${id}`);
       setTechData((prevData) => prevData.filter((item) => item._id !== id));
-      alert('Data deleted');
+
       toast.success('Data Deleted');
     } catch (error) {
       console.log(error);

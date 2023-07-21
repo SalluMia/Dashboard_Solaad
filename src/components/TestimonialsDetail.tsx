@@ -89,7 +89,7 @@ const TestimonialsDetail = () => {
                       <p className="inline-flex py-1 px-3 text-sm   font-bold text-success">
                         <img
                           className="my-5 h-20 w-40 object-cover"
-                          src={customerImage}
+                          src={`${BASEURL}/uploads/${customerImage}`}
                           alt="Event"
                         />
                       </p>

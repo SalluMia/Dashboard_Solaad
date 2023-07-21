@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import './uploader.css';
 import axios from 'axios';
 import { BASEURL } from '../../components/Api/Api_Url';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
 
 function PortfolioForm() {
@@ -19,6 +19,8 @@ function PortfolioForm() {
 
   const { id } = useParams();
   console.log(id);
+
+  const navigate = useNavigate();
 
   /////////////////////////////////////////// code for image drag drop /////////////////////////////////
   const [dragActive, setDragActive] = useState(false);
@@ -110,6 +112,7 @@ function PortfolioForm() {
             setIsFileSelected(false);
           setProjClient('');
           setUrl('');
+          navigate('/projects');
 
           toast.success('Successfully Submitted!');
         }
