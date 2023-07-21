@@ -9,9 +9,11 @@ import {
 import axios from 'axios';
 import { BASEURL } from './Api/Api_Url';
 import { useNavigate } from 'react-router-dom';
+import { Toaster, toast } from 'react-hot-toast';
 
 function Logo() {
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(null);
+
   const [updateImage, setUpdateImage] = useState(false);
 
   const navigate = useNavigate();
@@ -72,9 +74,15 @@ function Logo() {
       console.log(response);
       if (response.status == 200) {
         setUpdateImage(true);
+        setIsFileSelected(false);
+        toast.success('Logo Uploaded');
       }
     } catch (error) {
       console.log(error);
+      if (error.response.status == 400) {
+        toast.error('First Delete The Logo Then Upload');
+        setIsFileSelected(false);
+      }
     }
   };
 
@@ -85,8 +93,8 @@ function Logo() {
   const fetchData = async () => {
     try {
       const response = await axios.get(`${BASEURL}/api/auth/logo`);
-      console.log(response.data);
-      setImage(response.data);
+      console.log(response);
+      setImage(response.data[0]);
     } catch (error) {
       console.log(error);
     }
@@ -99,11 +107,10 @@ function Logo() {
   const handleDelete = async (id: any) => {
     try {
       const response = await axios.delete(`${BASEURL}/api/auth/logo/${id}`);
-      setImage((prevData) =>
-        prevData?.filter((image: any) => image._id !== id)
-      );
+
       if (response.status == 200) {
-        alert('Data deleted');
+        setImage(null);
+        toast.success('Data deleted');
         navigate('/logo');
       }
     } catch (error) {
@@ -113,11 +120,12 @@ function Logo() {
 
   return (
     <div>
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="rounded-sm border border-stroke bg-white px-5 py-5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
         <div className="grid py-8 lg:grid-cols-3">
           <div className="">
             <img
-              src={image?.logopic}
+              src={`${BASEURL}/uploads/${image?.logopic}`}
               alt="Logo"
               className=" h-75 w-full rounded-lg"
             />
