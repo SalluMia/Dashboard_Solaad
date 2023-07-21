@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './uploader.css';
 import { BASEURL } from '../../components/Api/Api_Url';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
 
 export default function EventUpdateForm() {
@@ -17,6 +17,8 @@ export default function EventUpdateForm() {
   const [descriptionError, setDescriptionError] = useState('');
 
   const { id } = useParams();
+
+  const navigate = useNavigate();
   ///////////////////////////// Code for drag drop image/////////////////////////////
 
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -124,6 +126,7 @@ export default function EventUpdateForm() {
           setDescription('');
           setIsFileSelected(false);
           toast.success('Successfully Updated!');
+          navigate('/Holidays&Events');
         }
         console.log(response); // Handle the response data
       } catch (error) {
@@ -140,6 +143,7 @@ export default function EventUpdateForm() {
       setTitle(response.data.content.event_title),
         setDescription(response.data.content.description),
         setSelectedImageSrc(response.data.content.event_Picture);
+
       console.log(response); // Handle the response data
     } catch (error) {
       console.error(error); // Handle the error
@@ -240,7 +244,7 @@ export default function EventUpdateForm() {
                       {!isFileSelected ? (
                         <div>
                           <img
-                            src={selectedImageSrc}
+                            src={`${BASEURL}/uploads/${selectedImageSrc}`}
                             alt="Uploaded"
                             style={{ maxWidth: '200px' }}
                           />
@@ -248,7 +252,7 @@ export default function EventUpdateForm() {
                       ) : (
                         <div>
                           <img
-                            src={selectedImageSrc}
+                            src={`${BASEURL}/uploads/${selectedImageSrc}`}
                             alt="Uploaded"
                             style={{ maxWidth: '200px' }}
                           />

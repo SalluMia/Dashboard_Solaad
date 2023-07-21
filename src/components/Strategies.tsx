@@ -49,7 +49,7 @@ export default function Strategies() {
             className="add-button  bg-blue-500 h-10 transform rounded-full px-3 text-white transition-transform duration-300 hover:scale-110"
             style={{ background: '#023e8a' }}
           >
-            <b>Add your Strategies</b>{' '}
+            <b>Add your Strategies</b>
             <FontAwesomeIcon icon={faPlus} style={{ fontSize: '12px' }} />
           </button>
         </Link>
@@ -92,7 +92,7 @@ export default function Strategies() {
                       <p className="inline-flex py-1 px-3 text-sm font-medium text-success">
                         <img
                           className="my-5 h-20 w-40 object-cover"
-                          src={item.stratImage}
+                          src={`${BASEURL}/uploads/${item.stratImage}`}
                           alt="Event"
                         />
                       </p>

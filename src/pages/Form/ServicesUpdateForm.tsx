@@ -4,7 +4,7 @@ import makeAnimated from 'react-select/animated';
 import { BASEURL } from '../../components/Api/Api_Url';
 import axios from 'axios';
 import { Toaster, toast } from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 const animatedComponents = makeAnimated();
 
 export default function ServicesUpdateForm() {
@@ -14,6 +14,8 @@ export default function ServicesUpdateForm() {
   const [selectedOption, setSelectedOption] = useState([]);
 
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   ///////////////////////////////////////////// code for image drag drop////////////////////////////////
   const [dragActive, setDragActive] = useState(false);
@@ -122,6 +124,7 @@ export default function ServicesUpdateForm() {
         setIsFileSelected(false);
         setSelectedOption([]);
         toast.success('Form submitted successfully');
+        navigate('/services');
       }
     } catch (error) {
       console.log(error);

@@ -81,7 +81,7 @@ export default function Holidays() {
                         <img
                           className="my-5 h-15 w-40 object-cover"
                           // src={item?.event_Picture}
-                          src={event_Picture}
+                          src={`${BASEURL}/uploads/${event_Picture}`}
                           alt="Event"
                         />
                       </p>

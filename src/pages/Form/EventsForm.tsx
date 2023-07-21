@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './uploader.css';
 import { BASEURL } from '../../components/Api/Api_Url';
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
 
 export default function EventsForm() {
@@ -16,6 +16,8 @@ export default function EventsForm() {
   const [descriptionError, setDescriptionError] = useState('');
 
   const { id } = useParams();
+
+  const navigate = useNavigate();
   ///////////////////////////// Code for drag drop image/////////////////////////////
 
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -101,6 +103,7 @@ export default function EventsForm() {
           setDescription('');
           setIsFileSelected(false);
           toast.success('Successfully Submitted!');
+          navigate('/Holidays&Events');
         }
         console.log(response); // Handle the response data
       } catch (error) {

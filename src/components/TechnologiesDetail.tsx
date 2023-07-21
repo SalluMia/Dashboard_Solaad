@@ -66,6 +66,7 @@ const TechnologiesDetail = () => {
                       <p className="inline-flex py-1 px-3 text-sm text-sm font-medium text-success">
                         <img
                           className="my-5 h-20 w-40 object-cover"
+                          // src={`${BASEURL}/uploads/${image}`}
                           src={image}
                           alt="Technology"
                         />

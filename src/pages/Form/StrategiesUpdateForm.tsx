@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState, useRef, useEffect } from 'react';
 import { BASEURL } from '../../components/Api/Api_Url';
 import { Toaster, toast } from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function StrategiesUpdateForm() {
   const { id } = useParams();
@@ -10,6 +10,8 @@ export default function StrategiesUpdateForm() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [error, setError] = useState('');
+
+  const navigate = useNavigate();
 
   ///////////////////////////////////////////// code for image drag drop////////////////////////////////
   const [dragActive, setDragActive] = useState(false);
@@ -92,6 +94,7 @@ export default function StrategiesUpdateForm() {
         setSelectedImageSrc('');
         setError('');
         toast.success('Form submitted successfully');
+        navigate('/strategies');
       }
     } catch (error) {
       console.log(error);
