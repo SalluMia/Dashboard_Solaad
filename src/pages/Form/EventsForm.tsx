@@ -113,23 +113,6 @@ export default function EventsForm() {
     }
   };
 
-  const getData = async () => {
-    try {
-      const response = await axios.post(
-        `${BASEURL}/api/auth/holiday-event`,
-        id
-      );
-      setTitle(''), setDescription(''), setIsFileSelected(false);
-      console.log(response); // Handle the response data
-    } catch (error) {
-      console.error(error); // Handle the error
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
   return (
     <div>
       <Toaster position="top-center" reverseOrder={false} />

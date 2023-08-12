@@ -26,15 +26,17 @@ const SignIn = () => {
         password: password,
       });
 
-      if (response.status == 200) {
+      if (response.status === 200) {
         localStorage.setItem('login', JSON.stringify(response?.data));
         navigate('/');
         toast.success('Admin login Successfully');
+      } else {
+        setError('Incorrect email or password.'); // Set error message for incorrect credentials
       }
-
-      console.log(response.data.token);
     } catch (error) {
-      toast.error({ error });
+      toast.error(
+        'An error occurred during login please enter right credentials.'
+      ); // Set error toaster for other errors
     }
   };
 
@@ -57,10 +59,10 @@ const SignIn = () => {
                 <img className="dark:hidden" src={LogoDark} alt="Logo" />
               </Link>
 
-              <p className="2xl:px-20">
+              {/* <p className="2xl:px-20">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit
                 suspendisse.
-              </p>
+              </p> */}
 
               <span className="mt-15 inline-block">
                 <svg
@@ -227,7 +229,9 @@ const SignIn = () => {
                   </div>
                 </div>
 
-                {error && <p className="text-red-500 mb-4">{error}</p>}
+                {error && (
+                  <p style={{ color: 'red', margin: '5px' }}>{error}</p>
+                )}
 
                 <button
                   type="submit"
